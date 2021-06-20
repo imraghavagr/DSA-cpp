@@ -41,7 +41,7 @@ void insertAtHead(node*&head, int d){
 	//case when we are inserting any node other than the first node
 	//naya node basically, head aur first node ke beech me ghusta hai
 	node *n = new node(d);
-	n -> next = head; // or *n.next  = head
+	n -> next = head; // or (*n).next = head;
 	head = n;
 
 }
