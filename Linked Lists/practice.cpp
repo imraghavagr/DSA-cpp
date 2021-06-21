@@ -1,62 +1,179 @@
 #include<iostream>
 using namespace std;
 
-class Node{
+class node{
 public:
 	int data;
-	Node* next;
-
-	Node(int d){
+	node* next;
+	node(int d){
 		data = d;
 		next = NULL;
 	}
-};
-void insertFromHead(Node*&head,int d){
+};	
+
+int lengthLL(node* head){
+	int cnt = 0;
+	while(head!=NULL){
+		cnt++;
+		head = head->next;
+	}
+	return cnt;
+}
+
+void insertAtHead(node*&head, int d){
 	if(head == NULL){
-		//this means we are inserting first element into ll
-		head = new Node(d);
+		head = new node(d);
 		return;
 	}
-	//for inserting remaining elements
-	Node *n = new Node(d);// n will store the address of new node
-	(*n).next = head;
+	node*n = new node(d);
+	n->next = head;
 	head = n;
 }
-/*void insertFromTail(Node*&tail, int d){
-	if(tail == NULL){
-		//first element
-		tail = new Node(d);
+void insertAtTail(node*&head, int d){
+	node* temp = head;
+	while(temp->next != NULL){
+		temp = temp->next;
+	}
+	node* n = new node(d);
+	temp->next = n;
+}
+void insertAtMiddle(node*&head,int d, int p){
+	if(head == NULL or p == 0){
+		insertAtHead(head,d);
 		return;
 	}
-	Node*n = new Node(d);
-	(*tail).next = n;
-	tail = n;
-}*/
-void printLL(Node*head){
+	if(p>lengthLL(head)){
+		insertAtTail(head,d);
+		return;
+	}
+	//insert at middle
+	int jump = 1;
+	node*temp = head;
+	while(jump<=p-1){
+		temp = temp->next;
+		jump++;
+	}
+	node* n = new node(d);
+	n->next = temp->next;
+	temp->next = n;
+}
+void printLL(node*head){
 	while(head!=NULL){
-		cout<<(*head).data<<"->";
-		head = (*head).next;
+		cout<<head->data<<"->";
+		head = head->next;
 	}
 	cout<<endl;
 }
+void deleteAtHead(node*&head){
+	if(head == NULL){
+		return;
+	}
+
+	node*temp = head->next;
+	delete head;
+	head = temp;
+
+}
+void deleteAtTail(node*&head){
+	if(head == NULL){return;}
+
+	node*temp = head;
+	node*tail = head;
+	while(tail->next != NULL){
+		temp = tail;
+		tail = tail->next;
+	}
+	delete tail;
+	temp->next = NULL;
+
+}
+void deleteAtMiddle(node*&head,int p){
+	if(head == NULL){
+		return;
+	}
+	if (p==0)
+	{
+		deleteAtHead(head);
+		return;
+	}
+	if(p>lengthLL(head)){
+		deleteAtTail(head);
+		return;
+	}
+	//delete at middle
+	int jump = 1;
+	node*temp = head;
+	node*prev = head;
+	while(jump<=p-1){
+		prev = temp;
+		temp = temp->next;
+		jump++;
+	}
+	prev->next=temp->next;
+	delete temp;
+	
+}
+
+bool searchRecursively(node*head, int key){
+	if(head == NULL){
+		return false;
+	}
+	if(head->data == key){
+		return true;
+	}
+	else{
+		return searchRecursively(head->next,key);
+	}
+}
+node* inputLL(){
+	int d;
+	node* head = NULL;
+	while(cin>>d){
+		insertAtHead(head,d);
+	}
+	return head;
+}
 int main(){
 
-	Node*head = NULL;
-	insertFromHead(head,1);
-	insertFromHead(head,2);
-	insertFromHead(head,3);
-	insertFromHead(head,4);
-	insertFromHead(head,5);
+	node*head = NULL;
+	insertAtHead(head,5);
+	insertAtHead(head,4);
+	insertAtHead(head,3);
 	printLL(head);
+	insertAtTail(head,6);
+	insertAtTail(head,7);
+	insertAtTail(head,8);
+	printLL(head);
+	insertAtMiddle(head,9,20);
+	printLL(head);
+	insertAtMiddle(head,2,0);
+	printLL(head);
+	insertAtMiddle(head,1,0);
+	printLL(head);
+	insertAtMiddle(head,5,3);
+	printLL(head);
+	deleteAtHead(head);
+	printLL(head);
+	deleteAtTail(head);
+	printLL(head);
+	deleteAtMiddle(head,2);
+	printLL(head);
+	
+	/*int k;
+	cin>>k;
+	if(searchRecursively(head,k)){
+		cout<<"Present"<<endl;
+	}
+	else{
+		cout<<"Key not present"<<endl;
+	}*/
+	
+	node*head2 = inputLL();
+	printLL(head2);
 
-	//lets make an another ll and this time we will insert the elements form tail
-	Node*tail = NULL;
-	insertFromTail(tail,5);
-	insertFromTail(tail,4);
-	insertFromTail(tail,3);
-	insertFromTail(tail,2);
-	insertFromTail(tail,1);
-	printLL(tail);
 
 	return 0;
+
+
+
 }
