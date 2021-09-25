@@ -1,3 +1,7 @@
+//iterative appr - o(n) time + o(1) space
+//recursive appr - o(n) time + o(n) stack space
+//iterative appr is more efficient
+
 #include<iostream>
 using namespace std;
 class node{
@@ -41,7 +45,7 @@ void reverseLL(node*&head){
 	}
 	head = P;
 }
-//below fun will have O(n2)
+//below fun will have O(n2) - n for rec and n for loop
 /*node* reverseRecursively(node*head){
 	//base case - smallest ll that we need to reverse
 	//ll with one node or zero node
@@ -81,8 +85,6 @@ node* reverseRecursively(node*head){
 	return sHead;
 
 }
-
-
 void printLL(node* head){
 	while(head != NULL){
 		cout<<head->data<<"->";
