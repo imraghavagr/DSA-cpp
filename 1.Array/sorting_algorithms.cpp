@@ -46,7 +46,7 @@ void insertion_sort(int a[], int n){
 	for(int i = 1; i<=n-1; i++){
 		int e = a[i];
 		int j = i-1; 
-		while(j>=0 and a[j] > e){
+		while(j>=0 && a[j] > e){
 			a[j+1] = a[j];
 			j--;
 		}
