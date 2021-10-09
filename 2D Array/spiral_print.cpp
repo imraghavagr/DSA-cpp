@@ -1,61 +1,49 @@
 #include<iostream>
 using namespace std;
 
-void spiralPrint(int a[][100], int m, int n){
-	int startRow = 0;
-	int endRow = m-1;
-	int startCol = 0;
-	int endCol = n-1;
-	while(startRow<=endRow and startCol<= endCol){
-
-		//first row
-		for(int i =startCol; i<=endCol; i++){
-			cout<<a[startRow][i]<<" ";
-		}
-		startRow++;
-
-		//last col
-		for(int i = startRow;i<=endRow; i++ ){
-			cout<<a[i][endCol]<<" ";
-		}
-		endCol--;
-
-		//bottom row
-		if(endRow>startRow){
-			for(int i=endCol; i>=startCol; i--){
-				cout<<a[endRow][i]<<" ";
-			}
-			endRow--;
-		}
-		
-		//left most col
-		if(endCol>startCol){
-			for(int i=endRow; i>=startRow; i--){
-				cout<<a[i][startCol]<<" ";
-			}
-			startCol++;
-		}
-		
-	}
-}
-
-int main(){
-
-	int a[100][100];
-	int m,n;
-	cin>>m>>n;
-	int count =0;
-	
-	for(int i=0; i<m; i++){
-		for(int j = 0; j<n; j++){
-			a[i][j] = ++count;
-			cout<<a[i][j]<<" ";
-		}
-		cout<<endl;
-	}
-
-	spiralPrint(a,m,n);
+void print(int arr[][10],int n,int m){
 
 
-	return 0;
+    //4 variables
+    int startRow = 0;
+    int endRow = n - 1;
+    int startCol = 0;
+    int endCol = m - 1;
+
+    //Outer Loop (Traverse array boundary)
+    while(startCol<= endCol and startRow <=endRow){
+
+        //Start Row
+        for(int col = startCol ; col<=endCol; col++){
+            cout << arr[startRow][col]<<" ";
+        }
+
+        //End Col
+        for(int row=startRow + 1;row<=endRow;row++){
+            cout << arr[row][endCol]<<" ";
+        }
+
+        //End Row
+        for(int col=endCol - 1; col>=startCol;col--){
+            if(startRow==endRow){
+                break;
+            }
+            cout<< arr[endRow][col]<<" ";
+        }   
+
+        //Start Col
+        for(int row = endRow-1; row >=startRow + 1;row--){
+            //Avoid Duplicate Printing of elements
+            if(startCol==endCol){
+                break;
+            }
+            cout<< arr[row][startCol] <<" ";
+        }
+
+        //update the variables to point to inner spiral
+        startRow++;
+        endRow--;
+        startCol++;
+        endCol--;
+    }
 }

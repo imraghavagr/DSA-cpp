@@ -3,6 +3,8 @@
 #include<climits>
 #include<algorithm>
 
+//https://www.interviewbit.com/problems/pick-from-both-sides/
+
 using namespace std;
 int main()
 {
@@ -24,7 +26,10 @@ int main()
     for(int i = a.size()-2; i>=0; i--){
         s.push_back(a[i]+s[j++]);
     }
+
+    //cs1 stores the sum of first b elements
     int cs1 = p[b-1];
+    //stores the sum of last b elements
     int cs2 = s[b-1];
     int ms = INT_MIN;
     
@@ -32,7 +37,8 @@ int main()
     ms = max(ms,cs2);
     
     int i;
-    //int j;
+    //int j; j is already declared above in this scope
+    //picking up in combinations like - for b = 3, taking 1 from left and 2 from right, then 2 from left and 1 from right
     for(i =0,j = b-2;i<=b-2,j>=0 ;i++,j-- ){
         cs1 = 0;
         cs1 += p[i] + s[j];
