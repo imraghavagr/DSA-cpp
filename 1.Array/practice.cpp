@@ -1,43 +1,35 @@
 #include<iostream>
-#include<vector>
-#include<climits>
 #include<algorithm>
-
+#include<string>
+#include<vector>
 using namespace std;
-int main()
-{
-    vector<int> a{5,-2,3,1,2};
-    int b;
-    cin>>b;
-    
-    //computing prefix sum array
-    vector<int> p;
-    p.push_back(a[0]);
-    for(int i =1; i<a.size(); i++){
-        p.push_back(a[i]+p[i-1]);
+void bubbleSort(vector<int> v){
+    bool bestCase = true;
+    int n = v.size();
+    for(int i =0; i<n-1; i++){
+        for(int j = 1; j<=n-1-i; j++){
+            if(v[j-1]>v[j]){
+                swap(v[j-1],v[j]);
+                bestCase = false;
+            }
+        }
+        if(bestCase){
+            return;
+        }
     }
+    for(auto x : v){
+        cout<<x<<" ";
+    }
+    cout<<endl;
+}
+int main(){
 
-    //computing suffix sum array
-    vector<int> s;
-    s.push_back(a[a.size()-1]);
-    int j =0;
-    for(int i = a.size()-2; i>=0; i--){
-        s.push_back(a[i]+s[j++]);
+    vector<int> v{5,4,3,2,1};
+    bubbleSort(v);
+    for(int x : v){
+        cout<<x<<" ";
     }
-    int cs1 = p[b-1];
-    int cs2 = s[b-1];
-    int ms = INT_MIN;
+    cout<<endl;
     
-    ms = max(ms,cs1);
-    ms = max(ms,cs2);
-    
-    int i;
-    //int j;
-    for(i =0,j = b-2;i<=b-2,j>=0 ;i++,j-- ){
-        cs1 = 0;
-        cs1 += p[i] + s[j];
-        ms = max(ms,cs1);
-    }
-    cout<<ms<<endl;
-    
+    return 0;
 }
