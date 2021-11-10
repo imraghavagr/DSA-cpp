@@ -1,19 +1,15 @@
 #include<iostream>
+#include<vector>
+
 using namespace std;
 int main(){
-	int t;
-	cin>>t;
-	while(t>0){
-		int x;
-		cin>>x;
-		int count = 0;
-		while(x>0){
-			if((x & 1) == 1){count ++;}
-			x = x>>1;
-		}
-		cout<<count<<endl;
-		t--;
+	vector<int> v{3,2,3,5,6,5,2};
+	int ans = v[0];
+	for(int i = 1;i<v.size(); i++){
+		ans = ans ^ v[i];
 	}
+
+	cout<<ans<<endl;
 
 	return 0;
 }
