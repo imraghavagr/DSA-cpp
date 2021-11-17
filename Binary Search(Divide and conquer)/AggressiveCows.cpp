@@ -2,61 +2,51 @@
 #include<algorithm>
 using namespace std;
 
-bool canPlaceCow(int stalls[], int n, int c, int min_sep){
-
-	int cnt = 1;
-	int lastCowPlacedAtIdx = 0;
-	for(int i =1; i<n; i++){
-		if((stalls[i] - stalls[lastCowPlacedAtIdx]) >= min_sep){
-			lastCowPlacedAtIdx = i;
-			cnt++;
+bool canPlaceCow(int *a, int dist, int c, int n){
+	int cowPlaced = 1; // 1st cow placed at 1st stall
+	int i = 0, j = 1; //i is the idx, where last cow is placed. j is a potential stall for placing next cow
+	while(j<n and cowPlaced <c){
+		if(a[j] - a[i] >= dist){
+			cowPlaced++;
+			i = j;
+			j++;
 		}
-		if(cnt == c){
-			return true;
+		else{
+			j++;
 		}
 	}
-
-	return false;
+	return cowPlaced == c;
+	
 
 }
-
 int main(){
-
 	int t;
 	cin>>t;
-	int n,c;
-	int stalls[100000];
-	while(t>0){
-		//n - no. of stalls
-		//c - no. of cows
+	int arr[100000];
+	int n;
+	int c;
+	while(t--){
+		int n;
 		cin>>n>>c;
-		for(int i =0; i<n; i++){
-			cin>>stalls[i];
-		}
-		
-		sort(stalls,stalls+n);
-		
-		//binary search
-		//defining search space
+		for(int i = 0; i<n; i++) cin>>arr[i];
+		sort(arr,arr+n);
 		int s = 0;
-		int e = stalls[n-1]-stalls[0];
-		int ans = 0;
+		int e = arr[n-1] - arr[0]; //end will be the max possible separation is one cow is placed at begin and second at the end.
+		int ans = -1;
 		while(s<=e){
-			int mid = (s+e)/2;
-			bool cowPaced = canPlaceCow(stalls,n,c,mid);
-			if(cowPaced){
+			int mid = s  + (e-s)/2;
+			if(canPlaceCow(arr,mid,c,n)){
 				ans = mid;
-				s = mid+1;
+				s = mid + 1;
+
 			}
 			else{
 				e = mid-1;
 			}
 		}
-		t--;
 		cout<<ans<<endl;
 	}
-
-
+	
 
 	return 0;
 }
