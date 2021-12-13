@@ -1,49 +1,54 @@
 #include<iostream>
-#include<algorithm>
+#include<vector>
+/*
+unique number 2
+
+algo:
+1. Do xor of all nums 
+2. find out the result
+3. find pos of set bit in result lets say pos = i;
+4. find all nums which contain set bit at pos i
+5. do xor of all nums found in step 4 - this will give a
+6. b = result ^ a
+*/
 using namespace std;
 
-//given a array of n numbers where every number
-//repeats twice, except two numbers
-//find those unique numbers in an efficient way
-
+pair<int,int> solution(vector<int> &v){
+	int result = 0;
+	for(int i = 0; i<v.size(); i++){
+		result = result ^ v[i];
+	}
+	//now find the pos of set bit in result
+	int temp = result;
+	int pos = 0;
+	while(temp&1 == 0){
+		pos++;
+		temp = temp>>1;
+	}
+	//now lets find what are the numbers that contain set bit at position pos
+	int a = 0;
+	int b = 0;
+	int mask = (1<<pos);
+	for(int i = 0; i<v.size(); i++){
+		if((v[i]&mask) > 0)	a = a ^ v[i];
+    }
+	pair<int,int> ans;
+	b = result ^ a;
+	ans.first = min(a,b);
+	ans.second = max(a,b);
+	return ans; 
+}
 int main(){
-
+	
 	int n;
 	cin>>n;
-	
-	int arr[100000]; 
-	int result = 0;
+	vector<int> v;
 	for(int i = 0; i<n; i++){
-		cin>>arr[i];
-		result = result ^ arr[i];
+		int num;
+		cin>>num;
+		v.push_back(num);
 	}
-
-	//lets say, numbers we are finding are a, b
-	//at this point, result will be a^b
-
-	int temp = result;
-
-	//now lets try to find out the position of first set bit from right in the result
-	int pos = 0;
-	while(temp & 1 == 0){
-		pos++;
-		temp = temp >> 1;
-	}
-	//the first set bit from right in result is at position 'pos'
-
-	//now we need to check which numbers have a set bit at that position 
-	int a = 0; 
-	int b = 0;
-	int mask = (1 << pos);
-	for(int i = 0; i<n; i++){
-		if((arr[i] & mask)>0){a = a ^ arr[i]; }
-	}
-
-	//finding b
-	b = result ^ a;
-	cout<<min(a,b)<<" "<<max(a,b)<<endl;
-
-
-
+	pair<int,int> ans = solution(v);
+	cout<<ans.first<<" and "<<ans.second<<endl;
 	return 0;
 }

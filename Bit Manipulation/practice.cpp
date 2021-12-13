@@ -1,15 +1,29 @@
 #include<iostream>
-#include<vector>
-
+#include<algorithm>
 using namespace std;
+
 int main(){
-	vector<int> v{3,2,3,5,6,5,2};
-	int ans = v[0];
-	for(int i = 1;i<v.size(); i++){
-		ans = ans ^ v[i];
+	
+	int n; 
+	cin>>n;
+	int arr[1000];
+	int maxElem = arr[0];
+	for(int i = 0; i<n; i++){
+		cin>>arr[i];
+		maxElem = max(maxElem,arr[i]);
 	}
 
-	cout<<ans<<endl;
+	int freq[maxElem] = {0};
 
+	for(int i = 0; i<n; i++){
+		freq[arr[i]] += 1;
+	}
+	int max = 0;
+	for(int i = 0; i<=maxElem; i++){
+		if(freq[i] > max){
+			max = i;
+		}
+	}
+	cout<<max<<endl;
 	return 0;
 }

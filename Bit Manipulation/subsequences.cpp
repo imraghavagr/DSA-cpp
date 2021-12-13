@@ -1,33 +1,32 @@
 #include<iostream>
+#include<cstring>
 using namespace std;
-void generateSubs(char a[], int i, char out[], int j ){
-	//base case
-	if(a[i] == '\0'){
-		out[j] = '\0';
-		cout<<out;
-		return;
+/*
+Finding subsequences
+abc 
+0 to 2^n - 1
+i.e. 0 to (1<<n) - 1
+
+*/
+void filterChars(int n, char a[]){
+	int j = 0;
+	while(n>0){
+		int lb = (n&1);
+		if(lb){
+			cout<<a[j];
+		}
+		j++;
+		n = n>>1;
 	}
-
-	//rec case
-
-	//include current char
-	out[j] = a[i];
-	generateSubs(a,i+1,out,j+1);
-
-	//excluding the current char
-	generateSubs(a,i+1,out,j);
-
-
 }
 int main(){
 
 	char a[1000];
-	int i = 0;
 	cin>>a;
-	char ouput[100];
-	char j = 0;
-	
-	generateSubs(a,i,ouput,j);
-
+	int n = strlen(a);
+	for(int i = 0; i < (1<<n); i++){
+		filterChars(i,a);
+		cout<<" ";
+	}
 	return 0;
 }

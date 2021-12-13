@@ -5,7 +5,8 @@
         "vector": "cpp",
         "algorithm": "cpp",
         "string": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "utility": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "cmake.configureOnOpen": true

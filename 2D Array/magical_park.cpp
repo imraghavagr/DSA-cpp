@@ -1,7 +1,7 @@
 //https://hack.codingblocks.com/app/practice/6/1051/problem
 #include<iostream>
 using namespace std;
-bool helpPiyush(char arr[100][100], int n, int m, int k, int s){
+int helpPiyush(char arr[100][100], int n, int m, int k, int s){
     /*
     '.' - obstacle - strength decreases by 2
     '*' - magical beans - strength increases by 5
@@ -21,23 +21,40 @@ bool helpPiyush(char arr[100][100], int n, int m, int k, int s){
    for(int i = 0; i<n; i++){
        for(int j = 0; j<m; j++){
             if(s-1>=k){
-               if(arr[i][j] == '.'){
-                   s-=3;
-               }
-               else if(arr[i][j] == '*'){
-                   s += 4;
-               }
-               else{
-                   s--;
-                   j = m;
-               }
+                if(j != m-1){
+                    //not the end of the row
+                    if(arr[i][j] == '.'){
+                        s-=3;
+                    }
+                    else if(arr[i][j] == '*'){
+                        s += 4;
+                    }
+                    else{
+                        j = m;
+                    }
+                }else{
+                    //end of the row
+                    if(arr[i][j] == '.'){
+                        s-=2;
+                    }
+                    else if(arr[i][j] == '*'){
+                        s += 5;
+                    }
+                    else{
+                        j = m;
+                    }
+                }
+                
+            }
+           else{
+               //cout<<s<<endl;
+               return s;
            }
-           else return false;
        }
        //s++;
    }
-   cout<<s<<endl;
-   return s>=k;
+   //cout<<s<<endl;
+   return s;
 
 }
 int main(){
@@ -49,8 +66,9 @@ int main(){
             cin>>park[i][j];
         }
     }
-
-    if(helpPiyush(park,n,m,k,s))  cout<<"Yes"<<endl;
+    int x = helpPiyush(park,n,m,k,s);
+    cout<<x<<endl;
+    if(x>=k)  cout<<"Yes"<<endl;
     else cout<<"No"<<endl;
     
     return 0;
