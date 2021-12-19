@@ -1,46 +1,40 @@
 #include<iostream>
 using namespace std;
-
-void primeSieve(int *p){
-
-	//mark all odd numbers as potential prime candidates
-	for(int i = 3; i<= 1000000; i+=2){
+#define ll long long
+void prime_sieve(int *p){
+	//mark all multiples of 2 as non prime
+	// or we can say that mark all prime numbers as potential prime
+	for(ll i = 3;i<=1000000; i+=2){
 		p[i] = 1;
 	}
 
-	//prime sieve
-	for(long long i = 3; i<= 1000000; i+=2){
+	//sieve
+	for(ll i = 3; i<=1000000; i+=2){
+		//check is current num is marked as prime that is 1
 		if(p[i] == 1){
-			for(long long j = i*i; j<=1000000; j+=i){
+			//mark all multiples of i as not prime
+			for(ll j = i*i; j<=1000000; j+=i){
 				p[j] = 0;
 			}
 		}
 	}
 
-	//special case
-	p[0] = p[1] = 0;
+	//special cases
 	p[2] = 1;
-
+	p[1] = p[0] = 0;
 }
 int main(){
-	
-	int t;
-	cin>>t;
-	int a,b;
-	int p[1000000] = {0};
-	
-	primeSieve(p);
 
-	int cumSum[1000000] = {0};
+	int n; 
+	cin>>n;
+	int p[1000005] = {0};
+	prime_sieve(p);
+	//we have calculated all prime numbers till 10^6
+	//lets check prime nums upto n
+	for(int i = 0; i<=n; i++){
+		if(p[i] == 1) cout<<i<<" ";
+	}
+	cout<<endl;
 	
-	for(int i = 1; i<=1000000; i++){
-		cumSum[i] = cumSum[i-1] + p[i];
-	}
-
-	while(t--){
-		cin>>a>>b;
-		//we need to count the number of prime numbers bw a and b
-		cout<<cumSum[b]-cumSum[a-1]<<endl;
-	}
 	return 0;
 }

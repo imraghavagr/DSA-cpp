@@ -1,5 +1,3 @@
-
-
 //computing prime numbers efficiently using Prime Sieve
 //Prime Sieve
 //Eratosthenes Sieve
@@ -7,7 +5,7 @@
 #include<iostream>
 
 using namespace std;
-#define ll long long
+#define ll long long 
 //Sieve approach - generate an array containing prime numbers
 void prime_sieve(int *p){
 
