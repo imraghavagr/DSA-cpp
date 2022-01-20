@@ -31,7 +31,9 @@ public:
 //we need to pass the head pointer value by ref
 
 void insertAtHead(node*&head, int d){
-	
+	// we use dynamic memeory allocation because
+	// if static is done, everytime the function call is over that node variable will get destroyed
+		
 	if(head == NULL){
 		//first node in ll
 		//earlier head was pointing to null, now it will point to the new node containing data - 'd'
