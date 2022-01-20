@@ -1,19 +1,29 @@
 #include<iostream>
 using namespace std;
 
-int factorial(int n){
+//increasing seq
+int f1(int n){
+	
 	//base case
-	if(n == 0 or n == 1)
-	return 1;
-
+	if(n == 1)
+		return;
 	//rec case 
-	return n*factorial(n-1);
+	
+	//print remaining 
+	f1(n-1);
+	 
 }
+
+//decreasing seq
+int f2(int n){
+
+}
+
 int main(){
 	
 	int n;
 	cin>>n;
-	cout<<factorial(n)<<endl;
+	cout<<f(n)<<endl;
 	return 0;
 
 }
