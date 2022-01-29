@@ -98,8 +98,9 @@ void deletAtHead(Node*&head){
 	}
 	//cntl comes here means there is one ore more node present
 	Node*tmp = head->next;
-	delete head; //will delete the node at the address stored inside head
-	head = tmp;
+	delete head; //this will not delete the head bucket, but 
+	//will delete the node at the address stored inside head
+	head = tmp; //head now points to the 2nd node.
 }
 void deleteAtTail(Node*&head){
 	//get the tail ptr
