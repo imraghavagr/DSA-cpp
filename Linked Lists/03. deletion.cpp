@@ -134,16 +134,14 @@ void deleteAtMiddle(Node*&head, int p){
 	}
 	//delete in middle
 	else{
-		int jump = 1;
-		Node*temp = head;
-		Node*prev = head;
-		while(jump<=p-1){
-			prev = temp;
-			temp = temp->next;
-			jump++;
-		}	
-		prev->next = temp->next;
-		delete temp;
+		node*first = head;
+        node*second = head;
+        for(int i = 0; i<p; i++){
+            first = second;
+            second = second->next;
+        }
+        first->next = second->next;
+        delete second;
 	}
 }
 
