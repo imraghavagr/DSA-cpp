@@ -1,3 +1,11 @@
+/*
+
+-> 	we can not apply binary search in linked lists even if they are sorted, because??
+->	Finding the middle element in the LL will only take O(n) time.
+->	In arrays we have a property that arrays can be directly access [Direct Access] i.e. Arr[i] can be found
+->	therefore in case of LL, the search operation we willl use is Linear Search
+
+*/
 #include<iostream>
 using namespace std;
 
