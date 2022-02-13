@@ -35,23 +35,23 @@ void insertAtTail(node*&head, int d){
     node* n = new node(d);
     temp -> next = n;
 }
-void insertAtMiddle(node*&head, int d, int p){
-    if(p == 0){
-        insertAtHead(head, d);
+
+void reverseLL(node*&head){
+    if(head == NULL){
         return;
     }
-    if(p>=lengthOfLL(head)){
-        insertAtTail(head, d);
-        return;
+    node*P = NULL;
+    node*C = head;
+    node*N;
+    while(C != NULL){
+        N = C -> next;
+        C -> next = P;
+
+        P = C;
+        C = N;
     }
-    //middle insertion
-    node*temp = head;
-    for(int i = 0; i<p-1 ; i++){
-        temp = temp->next;
-    }
-    node* n = new node(d);
-    n->next = temp;
-    temp
+    head = P;
+
 }
 void printLL(node*head){
    
@@ -68,6 +68,8 @@ int main(){
     insertAtHead(head,2);
     insertAtHead(head,1);
     insertAtTail(head,12);
+    printLL(head);
+    reverseLL(head);
     printLL(head);
     return 0;
 }
