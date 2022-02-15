@@ -42,16 +42,28 @@ void reverseLL(node*&head){
     }
     node*P = NULL;
     node*C = head;
-    node*N;
+    node* N;
     while(C != NULL){
-        N = C -> next;
-        C -> next = P;
+        N = C->next;
 
-        P = C;
-        C = N;
+        C->next = P;
+        P=C;
+        C=N;
     }
     head = P;
+}
+node* recReverse(node*head){
+    if(head == NULL or head->next == NULL){
+        return head;
+    }
 
+    //rec case
+    node*sHead = recReverse(head->next);
+    node*temp = head -> next;
+    temp->next = head;
+    head->next = NULL;
+
+    return sHead;
 }
 void printLL(node*head){
    
@@ -70,6 +82,8 @@ int main(){
     insertAtTail(head,12);
     printLL(head);
     reverseLL(head);
+    printLL(head);
+    head = recReverse(head);
     printLL(head);
     return 0;
 }
