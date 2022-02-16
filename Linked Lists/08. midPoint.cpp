@@ -68,6 +68,19 @@ node* midPoint(node* head){
 	}
 	return slow;
 }
+/* following works as well
+int midPoint(node*head){
+    if(head == NULL){
+        return -1; //return -1 if the ll is empty.
+    }
+    node*slow = head;
+    node*fast = head;
+    while(fast->next != NULL and fast->next->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow->data;
+}*/
 
 int main(){
 
