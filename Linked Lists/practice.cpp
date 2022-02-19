@@ -3,6 +3,7 @@ using namespace std;
 /*
                     100          500          200          250
     head = 100      1|500  ->    2|200  ->    3|250  ->    4|NULL
+    P               C             N
 */
 
 class node{
@@ -37,33 +38,67 @@ void insertAtTail(node*&head, int d){
 }
 
 void reverseLL(node*&head){
-    if(head == NULL){
-        return;
-    }
-    node*P = NULL;
-    node*C = head;
-    node* N;
-    while(C != NULL){
-        N = C->next;
+  if(head == NULL or head->next == NULL){
+      return;
+  }
+  node*p = NULL;
+  node*c = head;
+  node*n;
+  while(c!= NULL){
+      n = c->next;
 
-        C->next = P;
-        P=C;
-        C=N;
-    }
-    head = P;
+      c->next = p;
+      p = c;
+      c = n;
+  }
+  head = p;
 }
 node* recReverse(node*head){
+    //base case
     if(head == NULL or head->next == NULL){
         return head;
     }
 
     //rec case
-    node*sHead = recReverse(head->next);
-    node*temp = head -> next;
+    node* sHead = recReverse(head->next);
+
+    node*temp = head->next;
     temp->next = head;
     head->next = NULL;
 
     return sHead;
+
+}
+int midPoint(node*head){
+    if(head == NULL){
+        return -1; //return -1 if the ll is empty.
+    }
+    node*slow = head;
+    node*fast = head;
+    while(fast->next != NULL and fast->next->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow->data;
+}
+
+node* solve(node* head, int n){
+    
+    node* slow = head;
+    node* fast = head;
+    node* prev;
+
+    while(n--){
+        fast = fast->next;
+    }
+    while(fast != NULL){
+        prev = slow;
+        slow = slow->next;
+        fast = fast->next;
+    }
+    prev->next = slow->next;
+    delete slow;
+    return head;
 }
 void printLL(node*head){
    
