@@ -61,7 +61,7 @@ void insertFromMiddle(Node*&head,int d, int p){
 		insertAtHead(head,d);
 		return;
 	}
-	else if(p>length(head)){
+	else if(p>=length(head)){
 		//insert at tail
 		insertAtTail(head,d);
 		return;
