@@ -147,6 +147,5 @@ int main(){
 	else{
 		cout<<"No cycle exists"<<endl;
 	}*/
-
 	return 0;
 }
