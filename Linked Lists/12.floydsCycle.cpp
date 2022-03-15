@@ -1,4 +1,6 @@
-//check if a LL contains a cycle or not
+//Given a Linked List, our task is to check if it contains a cycle or not
+//1. Detect cycle
+//2. Break the cycle if it exists.
 #include<iostream>
 using namespace std;
 
