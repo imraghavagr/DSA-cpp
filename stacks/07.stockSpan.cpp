@@ -28,10 +28,10 @@ vector<int> solve(vector<int> vec){
                 v.push_back(s.top().second);
             }
         }
-        pair<int,int> p;
-        p.first = vec[i];
-        p.second = i;
-        s.push(p);
+        //pair<int,int> p;
+        //p.first = vec[i];
+        //p.second = i;
+        s.push({vec[i],i});
     }
     for(int i = 0; i<v.size(); i++){
         v[i] = i - v[i];
