@@ -40,6 +40,10 @@ string soln2(string s){
 //this must be solved by stack also 
 string soln3(string s){
     stack<char> s;
+    for(int i = s.length()-1; i>=0; i--){
+        //traverse the string from right to left
+        //if the current element is already present at top
+    }
 }
 
 int main()
