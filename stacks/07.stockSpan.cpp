@@ -46,5 +46,4 @@ int main()
 	for(int x : ans) cout<<x<<" ";
 	cout<<endl;
 	return 0;
-    return 0;
 }

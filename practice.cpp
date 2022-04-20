@@ -1,41 +1,47 @@
-//nearest greater to the right
 #include<iostream>
 #include<vector>
-#include<stack>
+#include<string>
 #include<algorithm>
 using namespace std;
-vector<int> solve(vector<int> v){
-	
-	vector<int> ans;
-	stack<int> s;
+vector<string> dictWords(string textInput){
+	// latt matter cat matter cat
+	//cat batman
+	//0123456789
+	vector<string> ans;
+	string s = "";
+	string s2 = "";
 
-	for(int i = v.size()-1; i>=0; i--){
-		if(s.empty()){
-			ans.push_back(-1);
+	for(int i = 0; i<textInput.length(); i++){
+		while(!isspace(textInput[i]) and i<textInput.length()){
+			s = s + textInput[i];
+			//cout<<s<<" ";
+			i++;
 		}
-		else if(v[i]<s.top()){
-			ans.push_back(s.top());
+		int idx = s2.find(s);
+		if(idx != -1){
+			ans.push_back(s);
 		}
-		else if(v[i] >= s.top()){
-			while(!s.empty() and v[i] >= s.top()){
-				s.pop();
-			}
-			if(s.empty()){
-				ans.push_back(-1);
-			}
-			else{
-				ans.push_back(s.top());
-			}
-		}
-		s.push(v[i]);
+		s2 = s2 + " ";
+		s2 = s2 + s;
+		s = "";
 	}
-	reverse(ans.begin(), ans.end());
+	sort(ans.begin(),ans.end());
+	for(int i = 1; i<ans.size(); i++){
+		if(ans[i] == ans[i-1]){
+			ans.erase(ans.begin()+i,ans.begin()+i+1);
+		}
+	}
 	return ans;
 }
+
 int main(){
-	vector<int> v = {8,5,10,6,3,2,7};
-	vector<int> ans = solve(v);
-	for(int x : ans) cout<<x<<" ";
-	cout<<endl;
+	string textInput;
+	getline(cin,textInput);
+
+	vector<string> ans = dictWords(textInput);
+	for(int i = 0; i<ans.size(); i++){
+		cout<<ans[i]<<" ";
+	}
+
 	return 0;
 }
