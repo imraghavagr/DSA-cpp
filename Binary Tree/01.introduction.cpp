@@ -16,6 +16,7 @@ Output:
 a) Pre-order [Root Left Right]  : 8 10 1 6 9 7 3 14 13 
 b) In-order   [Left Root Right] : 1 10 9 6 7 8 3 13 14
 c) Post-order [Left Right Root] : 1 9 7 6 10 13 14 3 8
+d) Level-order [level wise]     : 8 10 3 1 6 14 9 7 13
 
 Binary Tree can be build and traversed in different ways.
 Different traversal methods - Pre-Order, In-Order, Post-Order, Level Order
