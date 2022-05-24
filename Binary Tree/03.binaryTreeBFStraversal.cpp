@@ -1,6 +1,12 @@
 #include<iostream>
 #include<queue>
-
+/*
+1.Insert root node in the queue
+2.Untill Queue is not empty:
+    2.1 Pop the node from the front of the queue, and display it as o/p
+    2.2 Insert the children of the node popped in step 2 into the queue(if they exist)
+    2.3 Repeat step 2 and 3.
+*/
 using namespace std;
 class node{
     public:

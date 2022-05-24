@@ -12,6 +12,7 @@ Input for following preorder build: 8 10 1 -1 -1 6 9 -1 -1 7 -1 -1 3 -1 14 13 -1
     1       6        14
           /   \       /
         9       7    13
+        
 Output: 
 a) Pre-order [Root Left Right]  : 8 10 1 6 9 7 3 14 13 
 b) In-order   [Left Root Right] : 1 10 9 6 7 8 3 13 14
