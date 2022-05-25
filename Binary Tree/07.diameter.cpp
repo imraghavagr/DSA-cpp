@@ -1,3 +1,4 @@
+//O(N^2) approach
 //given a tree, return the diameter of the tree
 //diameter of a tree is the largest distance between any two nodes of the tree.
 #include<iostream>
