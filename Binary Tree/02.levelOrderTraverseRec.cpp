@@ -1,6 +1,6 @@
-//O(n^2) soln for levle order traversal
-//O(n) for finding height of tree + O(n2) for printing each level
-//o(n+n2) = O(n2)
+//O(n^2) soln for level order traversal
+    //O(n) for finding height of tree + O(n^2) for printing each level
+    //o(n+n^2) = O(n^2)
 //Better approach - using queue in O(n) [BFS]
 #include<iostream>
 #include<algorithm>
