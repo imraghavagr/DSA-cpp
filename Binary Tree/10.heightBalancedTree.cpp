@@ -14,6 +14,7 @@ Eg. of a height balanced tree
 
 */
 #include<iostream>
+#include<queue>
 using namespace std;
 
 class node{
@@ -68,8 +69,34 @@ void bfs(node* root){
     }
     
 }
+pair<int,bool> heightBalance(node* root){
+    pair<int,bool> p;
+    if(root == NULL){
+        //height = 0, balanced = true
+        p.first = 0;
+        p.second = true;
+        return p;
+    }
+    //else do a bottom up approach [left, right, root]
+    pair<int,bool> ls = heightBalance(root->left);
+    pair<int,bool> rs = heightBalance(root->right);
 
+    //now root
+    p.first = max(ls.first,rs.first)+1;
+    if(abs(ls.first-rs.first)<= 1 & ls.second & rs.second){
+        //balance of a node will depend on all three conditions
+        p.second = true;
+    }
+    else{
+        p.second = false;
+    }
+    return p;
+
+}
 int main()
 {   
-    
+    node* root = buildTree();
+    bfs(root);
+    pair<int,bool> p = heightBalance(root);
+    cout<<p.first<<" "<<p.second<<endl;
 }
