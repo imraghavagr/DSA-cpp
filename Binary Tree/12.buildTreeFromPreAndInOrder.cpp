@@ -45,11 +45,13 @@ void bfs(node* root){
 }
 node* createTreeFromTrav(int*in,int*pre,int s,int e){
     static int i = 0; // this variable is initialized only once, its value will not be set to zero in every function call
+    //i will keep track of the traversal of pre order array
     if(s>e){
         return NULL;
     }
     //rec case
-    node* root = new node(pre[i]);
+    node* root = new node(pre[i]); //make root using the element at ith idx of pre order trav array
+    //since it is an unsorted array, find the idx of pre[i] in in order array
     int idx = -1;
     for(int j = s; s<=e; j++){
         if(in[j]==pre[i]){
