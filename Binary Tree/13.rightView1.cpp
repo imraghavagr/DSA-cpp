@@ -1,3 +1,16 @@
+/* Solution is incomplete
+             8
+          /     \  
+        10        3
+      /    \        \
+    1       6        14
+          /   \       /
+        9       7    13
+
+Right view of the above tree : 8,3,14,13
+Approach 1 : Print the last node value in level order traversal of each node
+        
+*/
 #include<iostream>
 #include<queue>
 using namespace std;
@@ -24,29 +37,31 @@ node* buildTree(){
     return root;
 }
 void bfs(node* root){
-    queue<node*> q;
+    queue<pair<node*,int>> q;
     if(root == NULL){
         return;
     }
-    q.push(root);
-    q.push(NULL);
+    static int level = 0;
+    q.push({root,level++});
+    q.push({NULL,-1});
     while(!q.empty()){
-        node* f = q.front();
-        if(f == NULL){
-            cout<<endl;
+        pair<node*,int> f = q.front();
+        if(f.first == NULL){
+            level++;
             q.pop();
             if(!q.empty()){
-                q.push(NULL);
+                q.push({NULL,-1});
             }
         }
         else{
-            cout<<f->data<<" ";
+            if()
+            cout<<(f.first)->data<<","<<f.second<<" ";
             q.pop();
-            if(f->left != NULL){
-                q.push(f->left);
+            if((f.first)->left != NULL){
+                q.push({(f.first)->left,level});
             }
-            if(f->right != NULL){
-                q.push(f->right);
+            if((f.first)->right != NULL){
+                q.push({(f.first)->right,level});
             }
         }
     }
