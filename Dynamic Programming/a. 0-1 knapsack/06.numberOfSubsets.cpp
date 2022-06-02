@@ -2,6 +2,11 @@
 //find the number of subsets of arr with sum equal to x.
 //direct varation of subset sum problem
 //0 is not present in the array
+
+//gfg ques- https://practice.geeksforgeeks.org/problems/perfect-sum-problem5633/1#
+//if 0 is/are also present in the array .. 
+    //then instead of i->1 to n and j->1 to sum, do i->1 to n and j-> 0 to sum
+    //just change j=1 to j=0 in initialisation of the inner for loop in the code other than initialization.
 #include<iostream>
 using namespace std;
 int findNumSubsets(int* arr, int n, int sum){
