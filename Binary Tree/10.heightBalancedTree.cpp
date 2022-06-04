@@ -83,7 +83,7 @@ pair<int,bool> heightBalance(node* root){
 
     //now root
     p.first = max(ls.first,rs.first)+1;
-    if(abs(ls.first-rs.first)<= 1 & ls.second & rs.second){
+    if(abs(ls.first-rs.first)<= 1 && ls.second && rs.second){
         //balance of a node will depend on all three conditions
         p.second = true;
     }
