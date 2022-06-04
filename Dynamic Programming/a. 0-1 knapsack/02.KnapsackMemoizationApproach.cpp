@@ -12,7 +12,7 @@ int knapsack(int*wt, int*val, int n, int w){
         return 0;
     }
     if(t[n][w] != -1){
-        //if the answer fot n,w is already found earlier, return it from the matrix
+        //if the answer for n,w is already found earlier, return it from the matrix
         return t[n][w];
     }
     //rec case
