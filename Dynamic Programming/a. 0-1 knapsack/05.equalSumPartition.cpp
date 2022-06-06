@@ -44,7 +44,7 @@ int equalPartition(int N, int arr[])
         //sum is even 
         //now we simply need to check if there exists a subset with sum = sum /2. 
         //because if one subset has sum = sum/2 then obviously other subset(remainnig elements) will also have sum = sum/2
-        return subsetSum(arr,N,sum/2);;
+        return subsetSum(arr,N,sum/2);
     }
 }
 int main()
