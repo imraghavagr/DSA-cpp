@@ -4,7 +4,7 @@
 using namespace std;
 int cutRibbon(int* len, int N){
     int t[4][N+1];
-    for(int j=0; j<N+1; j++){
+    for(int j=0; j<N+1; j++){b
         t[0][j] = INT_MIN;
     }
     for(int i = 0; i<4; i++){
