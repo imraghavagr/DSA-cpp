@@ -16,9 +16,23 @@ bool canPlaceCow(int *a, int dist, int c, int n){
 		}
 	}
 	return cowPlaced == c;
-	
-
 }
+//another implementation 
+// bool canPlaceCow(int mid, int*stalls, int n, int c){
+// 	int cowPlaced = 1;
+// 	int pos = 0;
+	
+// 	for(int i =pos+1; i<n; i++){
+// 		if(stalls[pos]+mid<=stalls[i]){
+// 			pos = i;
+// 			cowPlaced++;
+// 			if(cowPlaced==c){
+// 				return true;
+// 			}
+// 		}
+// 	}
+// 	return false;
+// }
 int main(){
 	int t;
 	cin>>t;
