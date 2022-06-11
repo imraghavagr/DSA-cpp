@@ -1,3 +1,4 @@
+//https://practice.geeksforgeeks.org/problems/palindromic-patitioning4845/1#
 #include<iostream>
 #include<climits>
 using namespace std;
