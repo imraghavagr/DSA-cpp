@@ -23,14 +23,12 @@ int solve(string &s, int i, int j){
     if(i>=j){
         return 0;
     }
-    if(isPalindrome(s,i,j)){
-        return 0;
-    }
-
     if(t[i][j] != -1){
         return t[i][j];
     }
-
+    if(isPalindrome(s,i,j)){
+        return 0;
+    }
     int ans = INT_MAX;
     for(int k = i; k<=j-1; k++){
         int tempans = 1 + solve(s,i,k)+ solve(s,k+1,j);
