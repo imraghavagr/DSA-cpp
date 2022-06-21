@@ -1,31 +1,32 @@
-//check this
 //Recursive approach + Memoization = DP [Top Down Approach]
+//https://practice.geeksforgeeks.org/problems/0-1-knapsack-problem0945/1#
 #include<iostream>
 #include<cstring>
 using namespace std;
 
-int knapsack(int*wt, int*val, int n, int w){
-    int static t[100][100];// since t is static, its initialization will be done only once
-    memset(t,-1,sizeof(t));// set all values of t = -1
-
-    if(n==0 || w == 0){
+int solve(vector<vector<int>>&t, int W, int wt[], int val[], int n){
+    //base case
+    if(n==0 || W==0){
         return 0;
     }
-    if(t[n][w] != -1){
-        //if the answer for n,w is already found earlier, return it from the matrix
-        return t[n][w];
+    if(t[n][W] != -1){
+        return t[n][W];
     }
+    
     //rec case
-    if(wt[n-1] <= w){
-        int choice1 = val[n-1] + knapsack(wt,val,n-1,w-wt[n-1]);
-        int choice2 = knapsack(wt,val,n-1,w);
-        //return the ans as well save it in the matrix for future usage.
-        return t[n][w] = max(choice1,choice2);
+    if(wt[n-1]<=W){
+        return t[n][W] = max(val[n-1]+solve(t,W-wt[n-1],wt,val,n-1),solve(t,W,wt,val,n-1));
     }
     else{
-        //return the ans as well save it in the matrix for future usage.
-        return t[n][w] = knapsack(wt,val,n-1,w);
+        return solve(t,W,wt,val,n-1);
     }
+}
+int knapSack(int W, int wt[], int val[], int n) 
+{ 
+    // Your code here
+    vector<vector<int>>t(n+1,vector<int>(W+1,-1));
+    return solve(t,W,wt,val,n);
+    
 }
 int main()
 {   
@@ -33,6 +34,6 @@ int main()
     int wt[] =  {1,1,1};
     int w = 2; //knapsack capacity
     int n = sizeof(val)/sizeof(int);
-    cout<<knapsack(wt,val,n,w)<<endl;
+    cout<<knapsack(W,wt,val,n)<<endl;
     return 0;
 }
