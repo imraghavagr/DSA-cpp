@@ -13,7 +13,11 @@
         "array": "cpp",
         "string_view": "cpp",
         "*.tcc": "cpp",
-        "initializer_list": "cpp"
+        "initializer_list": "cpp",
+        "any": "cpp",
+        "ranges": "cpp",
+        "span": "cpp",
+        "regex": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "cmake.configureOnOpen": true

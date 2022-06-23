@@ -82,7 +82,6 @@ int main()
 {
     //vector<int> v = {10,8,6,7,6,8,9}; ans = 42
     vector<int> v = {6,2,5,4,5,1,6};
-    
 	cout<<maxAreaHist(v)<<endl;
 	return 0;
 }

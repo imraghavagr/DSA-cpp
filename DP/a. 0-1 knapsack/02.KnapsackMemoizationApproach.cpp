@@ -18,7 +18,7 @@ int solve(vector<vector<int>>&t, int W, int wt[], int val[], int n){
         return t[n][W] = max(val[n-1]+solve(t,W-wt[n-1],wt,val,n-1),solve(t,W,wt,val,n-1));
     }
     else{
-        return solve(t,W,wt,val,n-1);
+        return t[n][W] = solve(t,W,wt,val,n-1);
     }
 }
 int knapSack(int W, int wt[], int val[], int n) 

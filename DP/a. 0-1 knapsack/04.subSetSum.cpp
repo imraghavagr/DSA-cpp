@@ -50,3 +50,24 @@ int main()
     cout<<isSubsetSumTabular(v,sum)<<endl;
     return 0;
 }
+/*Memozised approach
+
+bool solve(vector<int>&arr, int n, int sum){
+    if(n==0 && sum==0){
+        return 1;
+    }
+    if(sum == 0)    return 1; //empty subset will exist with sum = 0
+    if(n == 0)  return 0;
+    
+    //mem code
+    if(t[n][sum] != -1)   return t[n][sum];
+    //rec case
+    if(arr[n-1]<=sum){
+        t[n][sum] = solve(arr,n-1,sum-arr[n-1]) || solve(arr,n-1,sum);
+    }
+    else{
+        t[n][sum] = solve(arr,n-1,sum);
+    }
+    return t[n][sum];
+}
+    */
