@@ -8,7 +8,7 @@ void fun(int *arr, int n){
         cout<<arr[i]<<" ";
     }
     cout<<endl;
-
+a
 }
 int main(){
     
