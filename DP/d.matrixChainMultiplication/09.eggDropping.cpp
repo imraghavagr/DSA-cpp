@@ -17,6 +17,30 @@ int solve(int e, int f){
     }
     return t[e][f] = ans;
 }
+/*
+more optimized code
+int solve(int e, int f){
+    //base case
+    if(f==0 || f==1)return f;
+    if(e == 1)return f;
+    
+    if(t[e][f]!=-1)return t[e][f];
+    int ans = INT_MAX;
+    for(int k = 1; k<=f; k++){
+        int eggBreak,eggNoBreak;
+        
+        if(t[e-1][k-1]!=-1)    eggBreak = t[e-1][k-1];
+        else    eggBreak = solve(e-1,k-1);
+        
+        if(t[e][f-k]!=-1)  eggNoBreak = t[e][f-k];
+        else    eggNoBreak = solve(e,f-k);
+        
+        int tempAns = 1 + max(eggBreak,eggNoBreak);
+        ans = min(ans, tempAns);
+    }
+    return t[e][f] = ans;
+}
+*/
 int eggDrop(int n, int k) 
 {   
     memset(t,-1,sizeof(t));
