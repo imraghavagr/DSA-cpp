@@ -50,6 +50,7 @@ pair<int,int> fastDiameter(node* root){
     //now for root
     p.first = max(ls.first,rs.first)+1; // max(h1,h2)+1; h1 and h2 are heights of left and right st
     p.second = max((ls.first+rs.first),max(ls.second,rs.second));// d = max[(h1+h2),d1,d2]
+    //add one to diameter through root option ,if the diameter is defined as the number of roots instead of the distance between them
     return p;
 }
 int main()
