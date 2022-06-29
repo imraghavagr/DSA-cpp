@@ -52,6 +52,7 @@ int diameter(node* root){
     //case1: dia passes through the root
     int h1 = height(root->left);
     int h2 = height(root->right);
+    //add one to option1 ,if the diameter is defined as the number of roots instead of the distance between them
     int option1 = h1+h2; 
 
     //case2: diameter lies in the left subtree
