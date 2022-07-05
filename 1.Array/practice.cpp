@@ -1,87 +1,51 @@
-#include <iostream>
-#include <algorithm>
-#include <string>
-#include <vector>
+#include<iostream>
+#include<climits>
 using namespace std;
-/*
-5 4 3 2 1
+int main(){
+    
+    int arr[] = {-4,1,3,-2,6,2,-1,-4,-7};
+    int n = sizeof(arr)/sizeof(int);
 
-1 4 3 2 5 [swapped the min in unsorted array with elem at i = 0]
-1 2 3 4 5 [ swapped the min in unsorted array with elem at i = 1]
-1 2 3 4 5
-
-
-*/
-void insertionSort(vector<int> &nums)
-{
-   int minidx;
-   int n = nums.size();
-   for(int i = 0; i<n-1; i++){
-       minidx = i;
-       for(int j = i; j<n; j++){
-           if(nums[minidx]>nums[j]){
-               minidx = j;
-           }
-       }
-       swap(nums[minidx],nums[i]);
-   }
-}/*
-5 4 3 2 1
-4 5 3 2 1
-4 3 5 2 1
-4 3 2 5 1
-4 3 2 1 5
-
-4 3 2 1 5 j = 1 to 
-3 4 2 1 5
-3 2 4 1 5
-3 2 1 4 5 j <=n-1-i or j<n-i
-
-*/
-void bubbleSort(vector<int> &nums){
-    //n-1 passes to sort n elements
-    int n = nums.size();
-    for(int i =0; i<n-1; i++){
-        //in each pass we compare the adjacent elements
-        for(int j = 1; j<n-i; j++){
-            if(nums[j-1]>nums[j]){
-                swap(nums[j-1],nums[j]);
+    //O(n^3) approach
+    int maxSum = 0;
+    for(int i = 0; i<n; i++){
+        for(int j = i; j<n; j++){
+            int currSum = 0;
+            for(int k = i; k<=j; k++){
+                currSum += arr[k];
+            }
+            if(currSum>maxSum){
+                maxSum = currSum;
             }
         }
     }
-}
-int missingNumber(vector<int> &nums){
-    int i = 0;
-    while(i<nums.size()){
-        int correctIdx = nums[i];
-        if(i != correctIdx && nums[i] < nums.size()){
-            swap(nums[i],nums[correctIdx]);
-        }
-        else{
-            i++;
-        }
+    cout<<maxSum<<endl;
+    //O(n^2) approach
+    //first lets make the csum array 
+    int csum[n];
+    csum[0] = arr[0];
+    cout<<csum[0]<<" ";
+    for(int i = 1; i<n; i++){
+        csum[i] =csum[i-1]  + arr[i];
+        cout<<csum[i]<<" ";
     }
-    for(int i =0; i<nums.size(); i++){
-        if(nums[i] != i ){
-            return i;
-        }
+    cout<<endl;
+    
+    int maxAns = INT_MIN;
+    for(int i = 0; i<n; i++){
+        for(int j = i; j<n; j++){
+            //lets find out the sum of elements between 
+            //idx i and j
+            int currSum = (csum[j] - csum[i]) + arr[i];
+            maxAns = max(maxAns,currSum);
+        }        
     }
-    return nums.size();
-}
-int main()
-{
+    cout<<maxAns<<endl;
 
-    vector<int> nums{0,1};
+    //third approach - kadane's algo
+    //maintain two variables- currSum, maxSumSoFar
+    for(int i )
 
-    //insertionSort(nums);
-    int ans = missingNumber(nums);
-    for (int x : nums)
-    {
-        cout << x << " ";
-    }
-    cout << endl;
-    cout<<ans<<endl;
-   
 
     return 0;
 }

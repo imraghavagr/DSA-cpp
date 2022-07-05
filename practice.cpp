@@ -1,50 +1,45 @@
-#include<iostream>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
-bool canPlaceCow(int mid, int*stalls, int n, int c){
-	int cowPlaced = 1;
-	int pos = 0;
-	
-	for(int i =pos+1; i<n; i++){
-		if(stalls[pos]+mid<=stalls[i]){
-			pos = i;
-			cowPlaced++;
-			if(cowPlaced==c){
-				return true;
-			}
-		}
+bool bs(int* arr, int n, int key){
+	if(key<arr[0] || key>arr[n-1]){
+		return false;
 	}
-	return false;
-}
-int aggressiveCows(int* stalls, int n, int c){
-	sort(stalls,stalls+n);
 	int s = 0;
-	int e = stalls[n-1]-stalls[0];
-	int ans = -1;
+	int e = n-1;
 	while(s<=e){
-		int mid = s + (e-s)/2;
-		if(canPlaceCow(mid,stalls,n,c)){
+		int mid = s+(e-s)/2;
+		if(key == arr[mid]){
+			return true;
+		}
+		else if(key> arr[mid]){
 			s = mid+1;
-			ans = mid;
 		}
 		else{
 			e = mid-1;
 		}
 	}
-	return ans;
+	return false;
 }
 int main()
 {
-	int t;
-	cin>>t;
-	int n,c;
-	int stalls[100001];
-	while(t--){
-		cin>>n>>c;
-		for(int i =0; i<n; i++){
-			cin>>stalls[i];
+	int t,q;
+	cin>>t>>q; // t- no. of seats sold, q- no of seets that reena likes 
+	int arr1[t];
+	for(int i = 0; i<t; i++){
+		cin>>arr1[i];
+	}
+	sort(arr1,arr1+t);
+	for(int i = 0; i<q; i++){
+		int n;
+		cin>>n;
+		//check if this number n is present in arr1 or not
+		if(bs(arr1,q,n)){
+			//seat already filled 
+			cout<<"N"<<endl;
 		}
-		cout<<aggressiveCows(stalls,n,c)<<endl;
+		else{
+			cout<<"Y"<<endl;
+		}
 	}
 	return 0;
 }

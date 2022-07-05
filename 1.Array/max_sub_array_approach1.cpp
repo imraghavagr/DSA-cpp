@@ -3,7 +3,7 @@
 #define endl '\n'
 using namespace std;
 int main() {
-    int a[] = {-4,1,3,-2,6,2,-1,-4,-7};
+    int a[] = {-4,1,3,-2,6,2,-1,4,-7};
     //int a[] = {1,2,3,4};
     int n = sizeof(a)/sizeof(int);
     int maxSum = 0;
