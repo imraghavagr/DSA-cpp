@@ -2,52 +2,48 @@
 #include<climits>
 using namespace std;
 
-int modifiedkadane(int *a,int n){
-    int sum = INT_MIN; // largest sum
-    int currsum = 0;   // current running sum
-    int maxelem = INT_MIN; // to find max ele (needed for all negative case ones)
-   
-    for(int i=0;i<n;i++){
-        currsum += a[i];
-        if(currsum < 0){
-            currsum = 0;
+int kadaneFinal(vector<int>&v){
+	   
+    //kadanes algo 
+    int s = 0; // 's' will maintain the eligible starting point of the req subarray. 
+    int end, start; // end and start will finally contain the required subarray starting and ending indexes.
+    // cs = currentSumSoFar, ms = maxSumSoFar
+    int cs = 0;
+    int ms = 0;
+    int maxElem = INT_MIN;
+    for(int i = 0; i<v.size(); i++){
+        cs += v[i];
+        if(cs<0){
+            cs = 0;
+            s = i+1;
         }
-        sum = max(sum,currsum); // till here code is same as kadane algo code
-        if(maxelem < a[i]){     // to calculate max ele (needed for all -ve case)
-            maxelem = a[i];
+        if(ms<cs){
+            ms = cs;
+            start = s;
+            end = i;
+        }
+		//below code is just to handle if all the elements are negative
+        if(maxElem<v[i]){
+            maxElem = v[i];
         }
     }
-    return (maxelem < 0 ? maxelem : sum);//if all are -ve return maxelem, else sum
-}
-int kadanesAlgo(int*a, int n){
-	
-	//Kadane's Algorithm for maximum subarray sum
-	//this algo will not work if all the elements of the array are negative
-	int curr_sum = 0, max_sum = 0;
-	
-	for(int i=0; i<n; i++){
-		curr_sum += a[i];
-		if(curr_sum < 0){
-			curr_sum = 0;
-		}
-		if(curr_sum > max_sum )
-			max_sum = curr_sum;
-	}
-	return max_sum;
+    if(maxElem<0){
+        //this means entire array consists of negative elements
+        cout<<maxElem<<endl;
+    }
+    else{
+        cout<<ms<<endl;
+        for(int i = start; i<=end; i++){
+            cout<<v[i]<<" ";
+        }
+        cout<<endl;
+    }
+    return 0;
 }
 
 int main(){
 
-	int n;
-	cin>>n;
-	int a[1000];
-	
-	for(int i=0; i<n; i++){
-		cin>>a[i];
-	}
-	int ans = modifiedkadane(a,n);
-	cout<<ans<<endl;
-
-	
+	vector<int> v = {-4,-1,-3,-2,-6,-2,-1,-4};
+	kadaneFinal(v);
 	return 0;
 }
