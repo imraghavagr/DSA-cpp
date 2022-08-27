@@ -1,51 +1,42 @@
 #include<iostream>
+#include<vector>
 #include<climits>
 using namespace std;
 int main(){
+    vector<int> v = {-4,-1,-3,-2,-6,-2,-1,-4};
     
-    int arr[] = {-4,1,3,-2,6,2,-1,-4,-7};
-    int n = sizeof(arr)/sizeof(int);
-
-    //O(n^3) approach
-    int maxSum = 0;
-    for(int i = 0; i<n; i++){
-        for(int j = i; j<n; j++){
-            int currSum = 0;
-            for(int k = i; k<=j; k++){
-                currSum += arr[k];
-            }
-            if(currSum>maxSum){
-                maxSum = currSum;
-            }
+    //kadanes algo 
+    int s = 0; // 's' will maintain the eligible starting point of the req subarray. 
+    int end, start; // end and start will finally contain the required subarray starting and ending indexes.
+    // cs = currentSumSoFar, ms = maxSumSoFar
+    int cs = 0;
+    int ms = 0;
+    int maxElem = INT_MIN;
+    for(int i = 0; i<v.size(); i++){
+        cs += v[i];
+        if(cs<0){
+            cs = 0;
+            s = i+1;
+        }
+        if(ms<cs){
+            ms = cs;
+            start = s;
+            end = i;
+        }
+        if(maxElem<v[i]){
+            maxElem = v[i];
         }
     }
-    cout<<maxSum<<endl;
-    //O(n^2) approach
-    //first lets make the csum array 
-    int csum[n];
-    csum[0] = arr[0];
-    cout<<csum[0]<<" ";
-    for(int i = 1; i<n; i++){
-        csum[i] =csum[i-1]  + arr[i];
-        cout<<csum[i]<<" ";
+    if(maxElem<0){
+        //this means entire array consists of negative elements
+        cout<<maxElem<<endl;
     }
-    cout<<endl;
-    
-    int maxAns = INT_MIN;
-    for(int i = 0; i<n; i++){
-        for(int j = i; j<n; j++){
-            //lets find out the sum of elements between 
-            //idx i and j
-            int currSum = (csum[j] - csum[i]) + arr[i];
-            maxAns = max(maxAns,currSum);
-        }        
+    else{
+        cout<<ms<<endl;
+        for(int i = start; i<=end; i++){
+            cout<<v[i]<<" ";
+        }
+        cout<<endl;
     }
-    cout<<maxAns<<endl;
-
-    //third approach - kadane's algo
-    //maintain two variables- currSum, maxSumSoFar
-    for(int i )
-
-
     return 0;
 }
