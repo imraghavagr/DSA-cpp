@@ -5,7 +5,7 @@ using namespace std;
 
 //approach 1 - use any sorting algo, T - O(nlogn), space = O(1)
 
-//approach 2 - O(N) time 
+//approach 2 - O(N) time, O(1) 
 void sortColors(vector<int>& nums) {
     int count0 = 0, count1 = 0, count2 = 0; 
     for(int i = 0; i<nums.size(); i++){
