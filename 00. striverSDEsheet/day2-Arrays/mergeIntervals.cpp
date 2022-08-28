@@ -2,6 +2,8 @@
 #include<algorithm>
 #include<vector>
 using namespace std;
+//O(NLogN * N) ~ O(NLogN)
+//nlogn for sorting and n for traversal
 vector<vector<int>> merge(vector<vector<int>>& intervals) {
     sort(intervals.begin(),intervals.end());    
     vector<vector<int>> ans;
