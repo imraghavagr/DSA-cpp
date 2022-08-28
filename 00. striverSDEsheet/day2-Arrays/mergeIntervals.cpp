@@ -4,7 +4,7 @@
 using namespace std;
 //O(NLogN * N) ~ O(NLogN) time, O(n) space, where n<=N, n = size of output array
 //nlogn for sorting and n for traversal
-
+//OPTIMAL
 vector<vector<int>> merge(vector<vector<int>>& intervals) {
     sort(intervals.begin(),intervals.end());    
     vector<vector<int>> ans;
@@ -59,7 +59,7 @@ int main()
     // vector<vector<int>> v = {{1,3},{2,4},{2,6},{8,9},{8,10},{9,11},{15,18},{16,17}};
     // vector<vector<int>> v = {{1,4},{1,4}};
 
-    vector<vector<int>> ans = merge2(v);
+    vector<vector<int>> ans = merge1(v);
     for(int i = 0; i<ans.size(); i++){
         for(int j = 0; j<2; j++){
             cout<<ans[i][j]<<" ";
