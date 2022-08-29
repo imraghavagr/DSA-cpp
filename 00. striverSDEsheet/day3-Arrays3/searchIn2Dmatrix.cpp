@@ -1,6 +1,8 @@
 #include<iostream>
 using namespace std;
 
+//using staircase search.
+// O(m+n) approach
 bool searchMatrix1(vector<vector<int>>& matrix, int target) {
     int i = 0, j = matrix[0].size() - 1;
     while(i<matrix.size() && j>=0){
@@ -18,7 +20,8 @@ bool searchMatrix1(vector<vector<int>>& matrix, int target) {
     }
     return false;        
 }
-// O(log(m*n))
+//Using binary search on entire matrix as a flattened array
+// O(log(m*n)) = O(long m + log n) better than O(m+n)
 bool searchMatrixOptimal(vector<vector<int>>& matrix, int target){
     //apply binary search in the matrix from the index 0 to index m*n-1.
     //visualize the 2D matrix as a linear array of size m*n
