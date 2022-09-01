@@ -63,19 +63,20 @@ int main(){
 	int n =5; 
 	int i = 2;
 	
-	cout<<isOdd(n)<<endl;
-	cout<<getBit(n,i)<<endl;
-	cout<<setBit(n,i)<<endl;
-	clearBit(n,i);
-	cout<<n<<endl;
+	// cout<<isOdd(n)<<endl;
+	// cout<<getBit(n,i)<<endl;
+	// cout<<setBit(n,i)<<endl;
+	// clearBit(n,i);
+	// cout<<n<<endl;
 	
-	int m = 5;
-	updateBit(m,2,0);
-	updateBit(m,3,1);
-	cout<<m<<endl;
+	// int m = 5;
+	// updateBit(m,2,0);
+	// cout<<m<<endl;
+	// updateBit(m,3,1);
+	// cout<<m<<endl;
 
 	//clearing last 3 bits from position 2 to 0
-	cout<<clearLastBits(15,2)<<endl;
+	// cout<<clearLastBits(15,2)<<endl;
 	cout<<clearRangeOfBits(31,1,3)<<endl;
 	return 0;
 }
