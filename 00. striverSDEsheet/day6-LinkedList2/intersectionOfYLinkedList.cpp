@@ -17,6 +17,7 @@ ListNode *getIntersectionNode1(ListNode *headA, ListNode *headB) {
         }
         headA = headA->next;
     }
+    //return null if there is no intersection point
     return NULL;
 }
 //optimal approach 
