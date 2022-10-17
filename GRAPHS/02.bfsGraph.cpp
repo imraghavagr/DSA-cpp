@@ -6,7 +6,6 @@
 using namespace std;
 
 //For 1-index based graph
-
 // Function to return Breadth First Traversal of given graph.
 vector<int> bfsOfGraph(int n, vector<int> adj[], int startingNode) {
     // Code here
