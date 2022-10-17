@@ -3,7 +3,6 @@
 //Eratosthenes Sieve
 
 #include<iostream>
-
 using namespace std;
 #define ll long long 
 //Sieve approach - generate an array containing prime numbers
@@ -19,7 +18,7 @@ void prime_sieve(int *p){
 	//Sieve Code
 	for(ll i = 3; i<=1000000; i+=2){
 
-		//if the current number is not market (it is prime)
+		//if the current number is not marked (it is prime)
 		if(p[i] == 1){
 			//mark all multiples of p[i] as non prime
 			for(ll j = i*i; j<=1000000; j+=i){
@@ -32,8 +31,6 @@ void prime_sieve(int *p){
 	p[0] = 0;
 	p[1] = 0;
 	p[2] = 1; // 2 is the only even prime number
-
-
 }
 
 int main(){
@@ -55,3 +52,7 @@ int main(){
 	
 	return 0;
 }
+
+long long s1,p1
+int missing,repeating 
+ 
