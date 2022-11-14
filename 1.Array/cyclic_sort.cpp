@@ -38,7 +38,7 @@ void sort1(vector<int> &v){
 }
 int main(){
 
-    vector<int> v{0,3,2,1,4};
+    vector<int> v{0,1,0,1,0};
     //cyclicSort(v);
     sort1(v);
     for(auto x :  v){

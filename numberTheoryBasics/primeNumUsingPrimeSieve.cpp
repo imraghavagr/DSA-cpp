@@ -1,3 +1,4 @@
+//int[] arr = new int[10001];
 //computing prime numbers efficiently using Prime Sieve
 //Prime Sieve
 //Eratosthenes Sieve
@@ -20,12 +21,11 @@ void prime_sieve(int *p){
 	for(ll i = 3; i<=1000000; i+=2){
 
 		//if the current number is not market (it is prime)
-		if(p[i] == 1){
-			//mark all multiples of p[i] as non prime
+		if(p[i] == 1){ 
 			for(ll j = i*i; j<=1000000; j+=i){
 				p[j] = 0; //non prime
 			}
-		}
+		} 
 
 	}
 	//special cases
