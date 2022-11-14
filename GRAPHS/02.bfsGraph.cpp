@@ -49,7 +49,7 @@ int main()
         //undirected graph
     }
     for(int i = 0; i<=n; i++){
-        cout<<i<<" -> ";
+        cout<<i<<" -> "-;
         for(int x : adjList[i]){
             cout<<x<<", ";
         }
