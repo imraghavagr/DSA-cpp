@@ -1,41 +1,58 @@
 #include<iostream>
 using namespace std;
-/*
-            100        200         300         400
-h = 100    1 200      2 300       3 400      4 NULL
-*/
 class node{
     public:
         int data;
         node* next;
+        node* prev;
+
         node(int d){
             data = d;
             next = NULL;
+            prev = NULL;
         }
 };
-void insertAtHead(node*&head,int d){
+
+void insertAtHead(node*&head, node*&tail, int d){
     if(head == NULL){
-        //insertion of first node
         head = new node(d);
+        tail = head;
         return;
     }
-    //inserting remaining nodes
+
+    //input the remaining nodes
     node* n = new node(d);
     n->next = head;
+    head->prev = n;
     head = n;
 }
-void printLL(node*head){
+void printLL(node*head, node*tail){
     while(head != NULL){
-        cout<<head->data<<"->";
-        head = head->next;
+        cout<<head->data<<" -> ";
+        head = head -> next;
+    }
+    cout<<endl;
+    while(tail!=NULL){
+        cout<<tail->data<<" -> ";
+        tail = tail->prev;
     }
     cout<<endl;
 }
-int main(){
+int main()
+{   
     node* head = NULL;
-    insertAtHead(head,3);
-    insertAtHead(head,2);
-    insertAtHead(head,1);
-    printLL(head);
+    node* tail = NULL;
+
+    int n;
+    cin>>n;
+    
+    int x;
+    for(int i = 0; i<n; i++){
+        cin>>x;
+        insertAtHead(head,tail,x);
+    }
+
+    printLL(head, tail);
+
     return 0;
 }
