@@ -1,11 +1,15 @@
 //https://www.spoj.com/problems/BUSYMAN/
+//Also known as activity selection problem 
+
 #include<iostream>
 #include<algorithm>
 #include<vector>
 using namespace std;
+
 bool compare(pair<int,int> a, pair<int,int> b){
     return a.second<b.second;
 }
+
 int solution(vector<pair<int,int>> &v){
     
     int ans = 1;
@@ -44,4 +48,5 @@ int main()
         v.clear();
     }
     return 0;
+
 }
