@@ -1,4 +1,4 @@
-//lewel wise prints (data of each level in a separate line)
+//level wise prints (data of each level in a separate line)
 #include<iostream>
 #include<queue>
 using namespace std;

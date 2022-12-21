@@ -14,7 +14,7 @@ Input for following preorder build: 8 10 1 -1 -1 6 9 -1 -1 7 -1 -1 3 -1 14 13 -1
         9       7    13
         
 Output: 
-a) Pre-order [Root Left Right]  : 8 10 1 6 9 7 3 14 13 
+a) Pre-order [Root Left Right]  : 8 10 1 6 9 78 10 1 -1 -1 6 9 -1 -1 7 -1 -1 3 -1 14 13 -1 -1 -1 3 14 13 
 b) In-order   [Left Root Right] : 1 10 9 6 7 8 3 13 14
 c) Post-order [Left Right Root] : 1 9 7 6 10 13 14 3 8
 d) Level-order [level wise]     : 8 10 3 1 6 14 9 7 13
@@ -94,7 +94,6 @@ void printPostOrder(node* root){
     printPostOrder(root->right);
     cout<<root->data<<" ";  
 }
-
 int main()
 {
     node* root = buildTree();
@@ -110,6 +109,5 @@ int main()
     cout<<"Post-Order Traversal: ";
     printPostOrder(root);
     cout<<endl;
-
     return 0;
 }

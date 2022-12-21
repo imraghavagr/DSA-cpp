@@ -16,6 +16,7 @@ class node{
             right = NULL;
         }
 };
+
 node* buildTree(){
     int d;
     cin>>d;
@@ -71,7 +72,7 @@ int replaceSum(node* root){
     int rs = replaceSum(root->right);
     
     //store the original node value before updating it
-    int temp = root->data;
+    int temp = root->data; 
     root->data = ls+rs;
     return temp+root->data;
 

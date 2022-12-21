@@ -14,7 +14,17 @@ class node{
             right = NULL;
         }
 };
+void printPostOrder(node* root){
+    //left, right, root
+    if(root == NULL){
+        return;
+    }
 
+    //else left right root
+    printPostOrder(root->left);
+    printPostOrder(root->right);
+    cout<<root->data<<" ";  
+}
 void bfs(node* root){
     queue<node*> q; // the queue will contain the addresses of the nodes of the tree
 
@@ -66,9 +76,11 @@ node* createTreeFromTrav(int*in,int*pre,int s,int e){
 }
 int main()
 {   
-    int in[] = {3,2,8,4,1,6,7,5};
-    int pre[] = {1,2,3,4,8,5,6,7};
+    int in[] = {2,5,6,7,8,9,10,12,15,17};
+    int pre[] = {8,6,5,2,7,10,9,15,12,17};
     int n = sizeof(in)/sizeof(int);
     node* root = createTreeFromTrav(in,pre,0,n-1);
     bfs(root);
+    printPostOrder(root);
+    return 0;
 }
