@@ -16,7 +16,7 @@ void prime_sieve(int *p){
 	}
 
 	//Sieve Code
-	for(ll i = 3; i<=1000000; i+=2){
+	for(ll i = 3; i*i<=1000000; i+=2){
 
 		//if the current number is not marked (it is prime)
 		if(p[i] == 1){

@@ -1,40 +1,37 @@
 #include<iostream>
 using namespace std;
-#define ll long long
-void prime_sieve(int *p){
-	//mark all multiples of 2 as non prime
-	// or we can say that mark all prime numbers as potential prime
-	for(ll i = 3;i<=1000000; i+=2){
-		p[i] = 1;
+void primeSieve(int* arr){
+	//special cases
+	arr[2] = 1;
+
+	//mark all odds as potential primes
+	for(int i = 3; i<1001; i+=2){
+		arr[i] = 1;
 	}
 
-	//sieve
-	for(ll i = 3; i<=1000000; i+=2){
-		//check is current num is marked as prime that is 1
-		if(p[i] == 1){
-			//mark all multiples of i as not prime
-			for(ll j = i*i; j<=1000000; j+=i){
-				p[j] = 0;
+	for(int i = 3; i*i<1001; i+=2){
+		if(arr[i]){
+			for(long long j = i*i; j<1001; j+=i){
+				arr[j] = 0;
 			}
 		}
 	}
-
-	//special cases
-	p[2] = 1;
-	p[1] = p[0] = 0;
 }
-int main(){
+int main()
+{	
+	//marking all numbers as non prime
+	int arr[1001] = {0};
 
-	int n; 
+	primeSieve(arr);
+
+	int n;
 	cin>>n;
-	int p[1000005] = {0};
-	prime_sieve(p);
-	//we have calculated all prime numbers till 10^6
-	//lets check prime nums upto n
-	for(int i = 0; i<=n; i++){
-		if(p[i] == 1) cout<<i<<" ";
+
+	for(int i = 2; i<=n; i++){
+		if(arr[i]){
+			cout<<i<<" ";
+		}
 	}
 	cout<<endl;
-	
 	return 0;
 }
