@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 
 void printPrimeFactors(int n){
@@ -19,7 +20,7 @@ void printPrimeFactors(int n){
 		factors.push_back(make_pair(n,1));
 	}
 	for(auto it:factors){
-		cout<<p.first<<"^"<<p.second<<endl;
+		cout<<it.first<<"^"<<it.second<<endl;
 	}
 	return;
 }
