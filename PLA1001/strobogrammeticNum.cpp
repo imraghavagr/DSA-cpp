@@ -23,6 +23,10 @@ bool strobogrammeticNumberCheck(string str){
     }
     return true;
 }
+//another approach 
+//reverse the number 
+//then rotate the number 
+
 int main()
 {   
     string s;

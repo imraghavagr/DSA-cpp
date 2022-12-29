@@ -1,9 +1,4 @@
 //https://practice.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/0
-
-//512gb - with watch - 1.4l... 
-
-//512 gb - with watch - 1l 4 thousand + [2500]charger - insurance 1 yr - student id ???
-//
 #include<iostream>    
 using namespace std;
 long maximumSumSubarray(int K, vector<int> &Arr , int N){

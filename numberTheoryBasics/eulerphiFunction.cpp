@@ -26,7 +26,7 @@ eulerPhi(72) = E(2^3) * E(3^2)
              = (8-4) * (9 - 3)
              = 4 * 6
              = 24 (ans)
-
+g
 */
 #include<iostream>
 using namespace std;
