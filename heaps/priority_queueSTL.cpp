@@ -3,6 +3,8 @@
 #include<vector>
 #include<algorithm>
 using namespace std;
+
+// for defining custom priority. 
 struct comp{
 	bool operator()(vector<int> a, vector<int> b){
 
