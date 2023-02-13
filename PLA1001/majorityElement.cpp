@@ -2,8 +2,8 @@
 using namespace std;
 int main()
 {  
-    // vector<int> v {3,4,4,5,4,2,4};
-    vector<int> v {1,2,3,4,5,1};
+    vector<int> v {3,4,4,5,4,2,4};
+    // vector<int> v {1,2,3,4,5,1};
     unordered_map<int,int> mp;
     int maxFreq = 0;
     int maxFreqElement = -1;

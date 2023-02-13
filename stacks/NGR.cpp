@@ -43,7 +43,7 @@ vector<int> solve(vector<int> v){
 	return ans;
 }
 int main(){
-	vector<int> v = {8,5,10,6,3,2,7};
+	vector<int> v = {7,1,5,3,6,4};
 	vector<int> ans = solve(v);
 	for(int x : ans) cout<<x<<" ";
 	cout<<endl;
