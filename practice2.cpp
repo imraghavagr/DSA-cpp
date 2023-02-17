@@ -1,39 +1,25 @@
-#include<iostream>
-#include<vector>
+#include<bits/stdc++.h>
 using namespace std;
-void insertAtCorrectPosition(vector<int>&v, int val){
-    //base case
-    if(v.size() == 0 || v[v.size()-1]<=val){
-        v.push_back(val);
-        return;
+int numDifferentIntegers(string word) {
+    unordered_set<int> st;
+    for(int i = 0; i<word.length(); i++){
+        //if we find a digit.. we will keep on incrementing i untill we are finding digit 
+        if(isdigit(word[i])){
+            int num = 0; 
+            while(isdigit(word[i])){
+
+                num = (num*10) + (word[i]-'0');
+                i++;
+            }
+            // cout<<num<<endl;
+            st.insert(num);   
+        }
     }
-    //hypothesis - work for smaller input 
-    int temp = v[v.size()-1];
-    v.pop_back();
-    insertAtCorrectPosition(v, val);
-
-    //induction
-    v.push_back(temp);
-}
-void mySort(vector<int> & v){
-    //base case 
-    if(v.size() == 1)   return;
-
-    //hypothesis - work for smaller input 
-    int val = v[v.size()-1];
-    v.pop_back();
-    mySort(v);
-
-    //induction step - insert val at the correct place in smaller input array 
-    insertAtCorrectPosition(v,val);
+    return st.size();
 }
 int main()
 {   
-    vector<int> v = {3,5,7,1,0,8,10};
-    for(int x : v)  cout<<x<<" ";
-    cout<<endl;
-    mySort(v);
-    for(int x : v)  cout<<x<<" ";
-    cout<<endl;
+    string s = "a123bc34d8ef34";
+    cout<<numDifferentIntegers(s)<<endl;
     return 0;
 }

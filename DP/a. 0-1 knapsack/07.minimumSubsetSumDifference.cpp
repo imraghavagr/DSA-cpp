@@ -15,8 +15,8 @@ gfg: https://practice.geeksforgeeks.org/problems/minimum-sum-partition3317/1#
 using namespace std;
 
 int minDifference(int arr[], int n)  { 
-    // Your code goes here
     
+    // Your code goes here    
     int range = 0;
     for(int i = 0; i<n; i++){
         range+=arr[i];

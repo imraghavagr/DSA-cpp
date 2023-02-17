@@ -39,7 +39,6 @@ bool isSubsetSumTabular(vector<int>arr, int sum){
             }
         }
     }
-    
     return t[arr.size()][sum];
 }
 

@@ -49,9 +49,9 @@ int findNumSubsets(int* arr, int n, int sum){
 
 int main()
 {
-    int arr[] = {2,3,5,6,8,10};
+    int arr[] = {1,2,3,4,0};
     int n = sizeof(arr)/sizeof(int);
-    int sum = 10;
+    int sum = 6;
     cout<<findNumSubsets(arr,n,sum)<<endl;//3 for this input
     return 0;
 }
