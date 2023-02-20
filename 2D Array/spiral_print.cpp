@@ -47,3 +47,9 @@ void print(int arr[][10],int n,int m){
         endCol--;
     }
 }
+int main(){
+    int n;
+    cin>>n;
+    print(n);
+    return 0;
+}

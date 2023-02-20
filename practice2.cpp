@@ -1,25 +1,65 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
 using namespace std;
-int numDifferentIntegers(string word) {
-    unordered_set<int> st;
-    for(int i = 0; i<word.length(); i++){
-        //if we find a digit.. we will keep on incrementing i untill we are finding digit 
-        if(isdigit(word[i])){
-            int num = 0; 
-            while(isdigit(word[i])){
 
-                num = (num*10) + (word[i]-'0');
-                i++;
-            }
-            // cout<<num<<endl;
-            st.insert(num);   
+void print(int n,int m){
+
+    vector<vector<int>> arr(n,vector<int>(n,0));
+
+    //4 variables
+    int startRow = 0;
+    int endRow = n - 1;
+    int startCol = 0;
+    int endCol = m - 1;
+
+    int val = 1;
+
+    //Outer Loop (Traverse array boundary)
+    while(startCol<= endCol and startRow <=endRow){
+
+        //Start Row
+        for(int col = startCol ; col<=endCol; col++){
+            arr[startRow][col] = val++;
         }
+
+        //End Col
+        for(int row=startRow + 1;row<=endRow;row++){
+            arr[row][endCol] = val++;
+        }
+
+        //End Row
+        for(int col=endCol - 1; col>=startCol;col--){
+            if(startRow==endRow){
+                break;
+            }
+            arr[endRow][col] = val++;
+        }   
+
+        //Start Col
+        for(int row = endRow-1; row >=startRow + 1;row--){
+            // Avoid Duplicate Printing of elements
+            if(startCol==endCol){
+                break;
+            }
+            arr[row][startCol] = val++;
+        }
+
+        //update the variables to point to inner spiral
+        startRow++;
+        endRow--;
+        startCol++;
+        endCol--;
     }
-    return st.size();
+    for(int i = 0; i<n; i++){
+        for(int j = 0; j<n; j++){
+            cout<<arr[i][j]<<"\t";
+        }
+        cout<<endl;
+    }
 }
-int main()
-{   
-    string s = "a123bc34d8ef34";
-    cout<<numDifferentIntegers(s)<<endl;
+int main(){
+    int n;
+    cin>>n;
+    print(n, n);
     return 0;
 }
