@@ -1,3 +1,4 @@
+//https://practice.geeksforgeeks.org/problems/eventual-safe-states/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=eventual-safe-states
 #include<iostream>
 using namespace std;
 vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
