@@ -1,17 +1,20 @@
 //https://practice.geeksforgeeks.org/problems/path-with-minimum-effort/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=path-with-minimum-effort
+//time - ElogV
+//E = total number of edges - for grid: V = m*n*4
+//V = total number of nodes - for grid: V = m*n
 #include<iostream>
 using namespace std;
 int MinimumEffort(vector<vector<int>>& heights) {
-    // Code herepair<int,pair<int,int>>
+    // Code here
     int m = heights.size(), n = heights[0].size();
-    
+
     vector<vector<int>> distance(m, vector<int>(n,1e9));
     priority_queue<pair<int,pair<int,int>>, vector<pair<int,pair<int,int>>>, greater<>> pq;
     //push the start node into the queue 
     pq.push({0, {0,0}});
     //put distance from source to source as 0
     distance[0][0] = 0;
-    
+
     while(!pq.empty()){
         auto it = pq.top();
         pq.pop();
