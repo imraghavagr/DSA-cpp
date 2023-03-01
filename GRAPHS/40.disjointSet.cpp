@@ -21,8 +21,10 @@ public:
             //if the parent of this node is that node itself, then this node is the ultimate parent
             return node;
         
-        // return findUltimateParent(parent[node]); but this line will again and again take logarithmic time 
-        //we need to add path compression also - that is we will connect the node to its ultimate parent directyl
+        // return findUltimateParent(parent[node]); 
+        //but the above line will again and again take logarithmic time 
+        //therefore we need to add path compression also - 
+        //that is we will connect the node to its ultimate parent directyl
         return parent[node] = findUltimateParent(parent[node]);
     }
     void unionByRank(int u, int v){
@@ -32,7 +34,8 @@ public:
         int ultParentOfU = findUltimateParent(u);
         int ultParentOfV = findUltimateParent(v);
         
-        // if both the ultimate parents are same, it means they belong to the same componend.. so we do not need to do anything
+        // if both the ultimate parents are same, it means they belong to the same component..
+        //so we do not need to do anything
         if(ultParentOfU == ultParentOfV)    return;
 
         //now connect according to ranks 
