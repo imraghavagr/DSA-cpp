@@ -14,7 +14,7 @@ vector<int> bellman_ford(int V, vector<vector<int>>& edges, int S) {
             int u = it[0];
             int v = it[1];
             int wt = it[2];
-            if(distance[u] + wt < distance[v]){
+            if(distance[u] != 1e8 && distance[u] + wt < distance[v]){
                 distance[v] = distance[u] + wt;
             }
         }
@@ -25,7 +25,7 @@ vector<int> bellman_ford(int V, vector<vector<int>>& edges, int S) {
         int u = it[0];
         int v = it[1];
         int wt = it[2];
-        if(distance[u] + wt < distance[v]){
+        if(distance[u] != 1e8 && distance[u] + wt < distance[v]){
             //if this is getting true... it means there is a negative cycle 
             return {-1};
         }
