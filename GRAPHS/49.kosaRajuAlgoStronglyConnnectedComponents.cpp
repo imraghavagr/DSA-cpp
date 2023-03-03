@@ -12,6 +12,16 @@ void dfs(int node, vector<int> &visArr, vector<vector<int>> &adj, stack<int> &st
     }
     stk.push(node);
 }
+void dfs2(int node, vector<int> &visArr, vector<vector<int>> &adj){
+    //mark the current node as visited 
+    visArr[node] = 1;
+    //traverse all unvisited adjacent nodes 
+    for(auto it : adj[node]){
+        if(!visArr[it]){
+            dfs2(it, visArr, adj);
+        }
+    }
+}
 //Function to find number of strongly connected components in the graph.
 int kosaraju(int V, vector<vector<int>>& adj)
 {
@@ -45,8 +55,8 @@ int kosaraju(int V, vector<vector<int>>& adj)
         stk.pop();
         if(!visArr[node]){
             cnt++;
-            //there is no need of this stack now 
-            dfs(node, visArr, reverseGraph, stk);
+            //there is no need of this stack now .. we can use the same dfs function also 
+            dfs2(node, visArr, reverseGraph);
         }
         
     }
