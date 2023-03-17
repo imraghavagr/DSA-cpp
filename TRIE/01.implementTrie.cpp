@@ -36,7 +36,8 @@ public:
         for(int i = 0; i<word.length(); i++){
             if(!node->containsKey(word[i])){
                 //if it does not contain the word 
-                //we need to create it 
+                //we need to create it - 
+                //basically, put reference of a new node at links[word[i] - 'a']
                 node->put(word[i], new Node());
             }
             //moves to the reference trie
