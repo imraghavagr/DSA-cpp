@@ -58,6 +58,10 @@ string longestWord(vector<string>& words) {
     }
     string ans = "";
     for(auto it : words){
+        //no need to check for a word, if a longer word is already 
+        //present in our answer 
+        if(ans.length() > it.length())  continue;
+        
         if(node->isComplete(it)){
             if(it.length() > ans.length()){
                 ans = it;
