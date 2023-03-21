@@ -2,7 +2,7 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-
+ 
 //Cyclic sort concept
 int findDuplicate(vector<int>& nums) {
     int i = 0;

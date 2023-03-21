@@ -1,9 +1,18 @@
 #include<iostream>
-#include<string>
 using namespace std;
 int main()
 {   
-    string s = "Raghav";
-    cout<<s.substr(2)<<endl;
+    int n;
+    cin>>n;
+    int cnt = 0;
+    int tempNum = n;
+    while(tempNum>0){
+        int ld = tempNum%10;
+        if(ld != 0 && n%ld == 0){
+            cnt++;
+        }
+        tempNum /= 10;
+    }
+    cout<<cnt<<endl;
     return 0;
 }
