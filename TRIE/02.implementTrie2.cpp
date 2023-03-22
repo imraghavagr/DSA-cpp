@@ -93,7 +93,7 @@ public:
 using namespace std;
 int main()
 {   
-    Trie node = new Trie();
+    Trie* node = new Trie();
     node->insert("apple");
     node->insert("apple");
     node->insert("apps");
