@@ -42,7 +42,6 @@ using namespace std;
     }
     return ans;
 }
-
 //approach 3 - Using hashmaps 
 //time - O(n), space - O(n)
 vector<int> twoSum3(vector<int>& nums, int target) {
