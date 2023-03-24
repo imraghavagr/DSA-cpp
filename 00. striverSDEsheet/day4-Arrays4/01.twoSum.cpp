@@ -61,6 +61,47 @@ vector<int> twoSum3(vector<int>& nums, int target) {
 }
 
 
+//approach 4 - sort the array and apply binary search
+int binarySearch(int key, vector<pair<int,int>> &arr, int i){
+    int mid;
+    int s = i+1; 
+    int e = arr.size()-1;
+    while(s<=e){
+        mid = s + (e-s)/2;
+        if(arr[mid].first == key){
+            return mid;
+        }
+        else if(arr[mid].first > key){
+            e = mid-1;
+        }
+        else{
+            s = mid+1;
+        }
+    }
+    return -1;
+}
+vector<int> twoSum4(vector<int>& nums, int target) {
+    //binary search approach .. but we will need to sort the array first 
+    vector<pair<int,int>> temp;
+    for(int i = 0; i<nums.size(); i++){
+        temp.push_back({nums[i], i});
+    }
+    sort(temp.begin(), temp.end());
+    //now iterate the target array, and for current i, try to find 
+    //target-nums[i] in the temp array from index i +1 to end 
+    vector<int> ans;
+    for(int i = 0; i<temp.size(); i++){
+        int key = target-temp[i].first;
+        //now use binary search to find 
+        int idx = binarySearch(key, temp, i);
+        if(idx != -1){
+            ans.push_back(temp[i].second);
+            ans.push_back(temp[idx].second);
+        }
+    }
+    return ans;
+}
+
 int main()
 {
     return 0;
