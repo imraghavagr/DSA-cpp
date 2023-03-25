@@ -10,87 +10,56 @@ class ListNode{
             next = NULL;
         }
 };
-void insertAtHead(ListNode*&head, int d){		
-	if(head == NULL){
-		head = new ListNode(d);
-		return;
-	}
-	ListNode *n = new ListNode(d);
-	n -> next = head;
-	head = n;
-}
-void printLL(ListNode*head){
-	while(head!=NULL){
-		cout<<head->data<<" -> ";
-		head = head->next;
-	}
-	cout<<endl;
-}
-ListNode* reverseLL(ListNode* head){
-    //smallest linked list - ll with 0 or 1 node
-    if(head == NULL || head->next == NULL){
-        return head;
+void insertAtTail(ListNode* &head, ListNode* &tail, int d){
+    if(head == NULL && tail == NULL){
+        //first insertion 
+        head =  new ListNode(d);
+        tail = head;
+        return;
     }
-
-    //recursively reverse the linkedlist from 2nd node to last node and store the head of reversed ll in sHead
-    ListNode* sHead = reverseLL(head->next);
-
-    //now sHead contains the reversed ll from 2nd node to last node
-    ListNode* temp = head->next;
-	temp->next = head;
-	head->next = NULL;
-	
-	return sHead;
+    ListNode* n = new ListNode(d);
+    tail->next = n;
+    tail = n;
 }
-
-ListNode* addTwoNumbers(ListNode* l1, ListNode* l2){
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    ListNode* head = NULL;
+    ListNode* tail = NULL;
+    //iterate thorugh both the given linked lists 
+    ListNode* ptr1 = l1;
+    ListNode* ptr2 = l2;
     int carry = 0;
-    ListNode* l3 = NULL;
-    //first traverse both the linked lists
-    while(l1 != NULL && l2 != NULL){
-        int x = l1->data;
-        int y = l2->data;
-        insertAtHead(l3,(x+y+carry)%10);
-        carry = (x+y+carry)/10;
-        l1 = l1->next;
-        l2 = l2->next;
+    while(ptr1!=NULL || ptr2!=NULL){
+        int addValue;
+        if(ptr1 == NULL){
+            //only l2 is remaining
+            addValue = carry + ptr2->val;
+            insertAtTail(head, tail, addValue%10);
+            carry = addValue/10;
+            ptr2 = ptr2->next;
+        }
+        else if(ptr2 == NULL){
+            //only l1 is remaining
+            addValue = carry + ptr1->val;
+            insertAtTail(head, tail, addValue%10);
+            carry = addValue/10;
+            ptr1 = ptr1->next;
+        }
+        else{
+            //both linked lists are available
+            addValue = carry + (ptr1->val + ptr2->val);
+            insertAtTail(head, tail, addValue%10);
+            carry = addValue/10;
+            ptr1 = ptr1->next;
+            ptr2 = ptr2->next;
+        }
     }
-
-    //now traverse whichever ll is remaining 
-    while(l1 != NULL){
-        insertAtHead(l3,(l1->data + carry)%10);
-        carry = (l1->data + carry)/10;
-        l1=l1->next;
+    //now add the carry if it is greater than 0 
+    if(carry > 0){
+        insertAtTail(head, tail, carry);
     }
-    while(l2 != NULL){
-        insertAtHead(l3,(l2->data + carry)%10);
-        carry = (l2->data + carry)/10;
-        l2=l2->next;
-    }
-    if(carry>0){
-        insertAtHead(l3,carry);
-    }
-    return reverseLL(l3);
+    return head;
 }
 int main(){
-    ListNode* l1 = NULL;
-    ListNode* l2 = NULL;
-    
-    insertAtHead(l1,9);
-    insertAtHead(l1,9);
-    insertAtHead(l1,9);
-    insertAtHead(l1,9);
-    insertAtHead(l1,9);
-    insertAtHead(l1,9);
-    insertAtHead(l1,9);
-
-    insertAtHead(l2,9);
-    insertAtHead(l2,9);
-    insertAtHead(l2,9);
-    insertAtHead(l2,9);
-
-    ListNode* l3 = addTwoNumbers(l1,l2);
-    printLL(l3);
 
     return 0;
 }
