@@ -80,6 +80,7 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
     }
     return NULL;
 }
+//approach 4
 ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
     ListNode* d1 = headA;
     ListNode* d2 = headB;
