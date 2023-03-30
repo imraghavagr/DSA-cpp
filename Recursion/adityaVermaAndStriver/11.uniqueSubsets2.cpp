@@ -2,28 +2,21 @@
 #include<iostream>
 using namespace std;
 //without using set - optimal solution - like combination sum 2 problem as taught by striver
-void solve(int index, vector<int> nums, vector<int> op, vector<vector<int>> &ans){
+void solve(int index, vector<int> &nums, vector<int> &op, vector<vector<int>> &ans){
     if(index > nums.size()) return;
-    
     ans.push_back(op);
-
     for(int i = index; i<nums.size(); i++){
-        if(i>index && nums[i] == nums[i-1]){
-            continue;
-        }
-        vector<int> op1  = op;
-        op1.push_back(nums[i]);
-        solve(i+1, nums, op1, ans);
+        if(i>index && nums[i] == nums[i-1]) continue;
+        op.push_back(nums[i]);
+        solve(i+1, nums, op, ans);
+        op.pop_back();
     }
-
-
 }
 vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-    vector<vector<int>>  ans;
-    sort(nums.begin(), nums.end());
+    vector<vector<int>> ans;
     vector<int> op;
-    int index = 0;
-    solve(index, nums, op, ans);
+    sort(nums.begin(), nums.end());
+    solve(0, nums, op, ans);
     return ans;
 }
 // void solve(vector<int> ip, vector<int> op, set<vector<int>> &st){
