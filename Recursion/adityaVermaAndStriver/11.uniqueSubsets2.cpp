@@ -7,7 +7,7 @@ void solve(int index, vector<int> nums, vector<int> op, vector<vector<int>> &ans
     
     ans.push_back(op);
 
-    for(int i = index; i<nums.siz/e(); i++){
+    for(int i = index; i<nums.size(); i++){
         if(i>index && nums[i] == nums[i-1]){
             continue;
         }
