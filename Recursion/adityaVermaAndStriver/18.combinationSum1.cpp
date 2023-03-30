@@ -1,5 +1,10 @@
 #include<iostream>
 using namespace std;
+/*
+1. Find unique combinations   
+2. Nums has all distinct integers
+3. Each number from num can be used unlimited number of times
+*/
 void solve(vector<int> ip, vector<int> op, int target, vector<vector<int>> &ans){
     
     if(target == 0 && ip.size() == 0){
