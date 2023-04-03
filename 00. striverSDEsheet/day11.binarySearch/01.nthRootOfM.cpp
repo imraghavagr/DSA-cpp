@@ -8,6 +8,21 @@ double mutliply(double number, int n){
     }
     return ans;
 }
+double fastMultiply(double number, int n){
+    double ans = 1.0;
+    while(n>0){
+        if(n&1){
+            //odd
+            ans *= number;
+            n -= 1;
+        }
+        else{
+            number = number*number;
+            n = n/2;
+        }
+    }
+    return ans;
+}
 double getNthRoot(int n, int m){
     double low = 1;
     // double high = m/n; we can also reduce the search space by doing this
@@ -17,7 +32,7 @@ double getNthRoot(int n, int m){
 
     while((high - low) > eps){
         double mid = low + (high-low)/2;
-        if(mutliply(mid, n) < m){
+        if(fastMultiply(mid, n) < m){
             low = mid;
         }
         else{
