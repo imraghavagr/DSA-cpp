@@ -34,6 +34,21 @@ int solve(int *arr, int n){
     }
     return dp[n-1];
 }
+//tabulated - space optimized 
+int solve(int *arr, int n){
+    int prev1 = arr[0];
+    int prev2 = 0;
+    int curr = prev1;
+    for(int i = 1; i<n; i++){
+        //pick or not pick 
+        int pick = arr[i] + prev2;
+        int notPick = 0 + prev1;
+        curr = max(pick, notPick);
+        prev2 = prev1;
+        prev1 = curr;
+    }
+    return curr;
+}
 int main()
 {
     return 0;
