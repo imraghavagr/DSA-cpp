@@ -52,9 +52,35 @@ int solve(vector<vector<int>> &points, int n){
     }
     return dp[n-1][3];
 }
-int maximumPoints(vector<vector<int>>& points, int n) {
-    // Code here
-    return solve(points, n);
+//tabular approach - space optimized - optimal method
+int solve(vector<vector<int>> &points, int n){
+
+    vector<int> dp(4, -1);
+    //initialization for day0 and for each activity 
+    for(int pastActivity = 0; pastActivity <4; pastActivity++){
+        int maxMerit = 0;
+        for(int activity = 0; activity <= 2; activity++){
+            if(activity != pastActivity){
+                maxMerit = max(maxMerit, points[0][activity]);
+            }
+        }
+        dp[pastActivity] = maxMerit;
+    }
+    for(int day = 1; day<n; day++){
+        vector<int> temp(4, -1);
+        for(int pastActivity = 0; pastActivity<4; pastActivity++){
+            int maxMerit = 0;
+            for(int activity = 0; activity <= 2; activity++){
+                if(activity != pastActivity){
+                    int merit = points[day][activity] + dp[activity];
+                    maxMerit = max(maxMerit, merit);
+                }
+            }
+            temp[pastActivity] = maxMerit;
+        }
+        dp = temp;
+    }
+    return dp[3];
 }
 int main()
 {
