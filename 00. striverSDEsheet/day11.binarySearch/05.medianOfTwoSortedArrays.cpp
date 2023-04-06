@@ -31,6 +31,8 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         return ((double)a+(double)b)/2;
     }
 }
+//Optimal approach = Binary Search 
+
 int main()
 {
     return 0;
