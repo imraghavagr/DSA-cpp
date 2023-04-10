@@ -1,3 +1,4 @@
+//https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=detect-cycle-in-a-directed-graph
 #include<iostream>
 using namespace std;
 bool dfs(int i, vector<int> &visArr, vector<int> &pathVisArr, vector<int> adj[]){

@@ -3,78 +3,53 @@
 #include<stack>
 using namespace std;
 
-int bfs(queue<pair<int,int>> &q, vector<vector<int>> &visArr, vector<vector<int>> &grid, int m, int n){
-    int ans = 0;
-    while(!q.empty()){
-        int i = q.front().first;
-        int j = q.front().second;
-        q.pop();
-        
-        //traverse in all 4 valid directions from i,j
-        
-        //left and right
-        for(int k = -1; k<=1; k++){
-            if(j+k>=0 && j+k<n && !visArr[i][j+k] && grid[i][j+k] == 1){
-                q.push(make_pair(i,j+k));
-                visArr[i][j+k] = 1;
-            }
+vector<int> delR = {-1, 0, 1, 0};
+vector<int> delC = {0, 1, 0, -1};
+bool isValid(int i, int j, int m, int n){
+    if(i>=0 && i<m && j>=0 && j<n)  return true;
+    else    return false;
+}
+void dfs(int i, int j, vector<vector<int>> &visArr, vector<vector<int>> &board){
+    int m = board.size();
+    int n = board[0].size();
+    visArr[i][j] = 1;
+    for(int k = 0; k<4; k++){
+        int newR = i + delR[k];
+        int newC = j + delC[k];
+        if(isValid(newR, newC, m, n) && !visArr[newR][newC] && board[newR][newC] == 1){
+            dfs(newR, newC, visArr, board);
         }
-        //up and down
-        for(int k = -1; k<=1; k++){
-            if(i+k>=0 && i+k<m && !visArr[i+k][j] && grid[i+k][j] == 1){
-                q.push(make_pair(i+k,j));
-                visArr[i+k][j] = 1;
-            }
-        }
-        
     }
+}
+int numEnclaves(vector<vector<int>>& board) {
+    int m = board.size();
+    int n = board[0].size();
+    vector<vector<int>> visArr(m, vector<int>(n, 0));
+    //start traversal from all the boundary 1s and traverse all the connected 1's from that 1 
+    // all the 1s that will be visited in this traversal can not be counted 
+    for(int j = 0; j<n; j++){
+        if(board[0][j] == 1){
+            dfs(0,j,visArr, board);
+        }
+        if(board[m-1][j] == 1){
+            dfs(m-1,j,visArr, board);
+        }
+    }
+    for(int i = 1; i<m-1; i++){
+        if(board[i][0] == 1){
+            dfs(i,0,visArr, board);
+        }
+        if(board[i][n-1] == 1){
+            dfs(i,n-1,visArr, board);
+        }
+    }
+    int cnt = 0;
     for(int i = 0; i<m; i++){
         for(int j = 0; j<n; j++){
-            if(!visArr[i][j] && grid[i][j] == 1){
-                ans++;
-            }
+            if(board[i][j] == 1 && !visArr[i][j])   cnt++;
         }
     }
-    return ans;
-}
-int numberOfEnclaves(vector<vector<int>> &grid) {
-    // Code here
-
-    int m = grid.size();
-    int n = grid[0].size();
-    vector<vector<int>> visArr(m,vector<int>(n,0));
-    
-    queue<pair<int,int>> q;
-    //push all the boundary 1's into the queue
-    
-    //traverse first row and last row
-    for(int j = 0; j<n; j++){
-        //first row
-        if(grid[0][j] == 1){
-            q.push(make_pair(0,j));
-            visArr[0][j] = 1;
-        }
-        //last row
-        if(grid[m-1][j] == 1){
-            q.push(make_pair(m-1,j));
-            visArr[m-1][j] = 1;
-        }
-    }
-    //traverse first col and last col
-    for(int i = 0; i<m; i++){
-        //first col
-        if(grid[i][0] == 1){
-            q.push(make_pair(i,0));
-            visArr[i][0] = 1;
-        }
-        //last col
-        if(grid[i][n-1] == 1){
-            q.push(make_pair(i,n-1));
-            visArr[i][n-1] = 1;
-        }
-    }
-    
-    return bfs(q,visArr,grid, m, n);
+    return cnt;
 }
 int main(){
 
