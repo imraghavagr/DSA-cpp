@@ -44,19 +44,20 @@ using namespace std;
 }
 //approach 3 - Using hashmaps 
 //time - O(n), space - O(n)
-vector<int> twoSum3(vector<int>& nums, int target) {
+vector<int> twoSum(vector<int>& nums, int target) {
+    unordered_map<int,int> mp; //value, index 
     vector<int> ans;
-    unordered_map<int,int> mp; // value, index
     for(int i = 0; i<nums.size(); i++){
-        if(mp.find(target-nums[i]) == mp.end()){
-            mp[nums[i]] = i;
-        }
-        else{
-            ans.push_back(mp[target-nums[i]]);
+        int neededValue = target - nums[i];
+        //tell that this value is present at this index
+        if(mp.find(neededValue) != mp.end()){
+            ans.push_back(mp[neededValue]);
             ans.push_back(i);
+            return ans;
         }
+        else    mp[nums[i]] = i;
     }
-    return ans;
+    return  ans;
 }
 
 
