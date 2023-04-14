@@ -1,18 +1,27 @@
 #include<iostream>
+#include<vector>
 using namespace std;
-int main()
-{   
-    int n;
-    cin>>n;
-    int cnt = 0;
-    int tempNum = n;
-    while(tempNum>0){
-        int ld = tempNum%10;
-        if(ld != 0 && n%ld == 0){
-            cnt++;
+void bubbleSort(vector<int> &arr){
+    int n = arr.size();
+    bool swapHappened = false;
+    for(int i = 1; i<n; i++){
+        for(int j = 0; j<n-i; j++){
+            if(arr[j] > arr[j+1]){
+                swap(arr[j], arr[j+1]);
+                swapHappened = true;
+            }
         }
-        tempNum /= 10;
+        if(swapHappened == false)   break;
     }
-    cout<<cnt<<endl;
+}
+int main()
+{
+    vector<int> arr{5,4,3,2,1};
+    vector<int> arr2{1,2,3,4,5};
+    for(auto it : arr2)  cout<<it<<" ";
+    cout<<endl;
+    bubbleSort(arr2);
+    for(auto it : arr2)  cout<<it<<" ";
+    cout<<endl;
     return 0;
 }
