@@ -1,24 +1,19 @@
 #include<iostream>
 #include<vector>
+#include<string>
 using namespace std;
 int main()
 {   
-    vector<vector<char>> board(9, vector<char>(9));
-    board = {{"5","3",".",".","7",".",".",".","."},
-             {"6",".",".","1","9","5",".",".","."},
-             {".","9","8",".",".",".",".","6","."},
-             {"8",".",".",".","6",".",".",".","3"},
-             {"4",".",".","8",".","3",".",".","1"},
-             {"7",".",".",".","2",".",".",".","6"},
-             {".","6",".",".",".",".","2","8","."},
-             {".",".",".","4","1","9",".",".","5"},
-             {".",".",".",".","8",".",".","7","9"}};
-            
-    for(int i = 0; i<9; i++){
-        for(int j = 0; j<9; j++){
-            cout<<board[i][j]<<" ";
-        }
-        cout<<endl;
+    string s;
+    cin>>s;
+    int cntStar = 0;
+    int cntHash = 0;
+    for(char ch : s){
+        if(ch == '*')   cntStar++;
+        else if(ch == '#')  cntHash++;
     }
+    if(cntStar == cntHash)  cout<<0<<endl;
+    else if(cntStar > cnth) cout<<1<<endl;
+    else cout<<-1<<endl;
     return 0;
 }
