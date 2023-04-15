@@ -40,7 +40,7 @@ using namespace std;
             ans.push_back(i);
         }
     }
-    return ans;
+    return ans;6677777
 }
 //approach 3 - Using hashmaps 
 //time - O(n), space - O(n)
