@@ -76,7 +76,7 @@ pair<int,bool> heightBalance(node* root){
         p.first = 0;
         p.second = true;
         return p;
-    }
+    } 
     //else do a bottom up approach [left, right, root]
     pair<int,bool> ls = heightBalance(root->left);
     pair<int,bool> rs = heightBalance(root->right);
