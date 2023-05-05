@@ -1,24 +1,24 @@
 #include<iostream>
-#include<vector>
+#include<string>
+#include<algorithm>
 using namespace std;
-void solve(int i, vector<int> &arr, int target, vector<int> &ans){
-    //base case 
-    if(i == arr.size()) return;
-
-    //induction step
-    if(target == arr[i]){
-        ans.push_back(i);
-    }
-    //hyposthesis 
-    solve(i+1, arr, target, ans);
-}
 int main()
 {   
-    vector<int> arr = {1,2,3,4,2,5};
-    int target = 2;
-    vector<int> ans;
-    solve(0, arr, target, ans);
-    for(int x : ans)    cout<<x<<" ";
-    cout<<endl;
+    string s = "My name is Raghav";
+    
+    string word = "";
+
+    for(int i = s.length()-1; i>=0; i--){
+        if(s[i] != ' '){
+            word += s[i];
+        }
+        else{
+            reverse(word.begin(), word.end());
+            cout<<word<<" ";
+            word = "";
+        }
+    }
+    reverse(word.begin(), word.end());
+    cout<<word<<endl;
     return 0;
 }
