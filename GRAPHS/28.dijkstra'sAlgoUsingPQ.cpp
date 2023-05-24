@@ -4,27 +4,31 @@ using namespace std;
 vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
 {
     // Code here
-    //declare a min heap that will store {dist, node}
-    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>> pq;
-    
-    //declare the distance array and assign inf to each value 
     vector<int> dist(V, INT_MAX);
-    
-    //distance from s to s is 0
     dist[S] = 0;
-    
-    //push the source node into q
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>> pq;
     pq.push({0,S});
     
     while(!pq.empty()){
-        int d = pq.top().first;
-        int n = pq.top().second;
+        auto it = pq.top();
         pq.pop();
-        for(auto it : adj[n]){
-            if(d+it[1] < dist[it[0]]){
-                pq.push({d+it[1], it[0]});
-                dist[it[0]] = d+it[1];
+        int node = it.second;
+        int d = it.first;
+        for(auto it2 : adj[node]){
+            
+            int adjNode = it2[0];
+            int edgeWt = it2[1];
+            
+            if(d + edgeWt < dist[adjNode]){
+                dist[adjNode] = d + edgeWt;
+                pq.push({dist[adjNode], adjNode});
             }
+        }
+    }
+    
+    for(int i = 0; i<V; i++){
+        if(dist[i] == INT_MAX){
+            dist[i] = -1;
         }
     }
     return dist;
