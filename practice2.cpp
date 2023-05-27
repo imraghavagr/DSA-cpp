@@ -1,18 +1,12 @@
+//s = "abcba"
+//true
 #include<iostream>
+#include<string>
 using namespace std;
-class node{
-public
-    int data;
-    node * next;
-    node(int d){
-        data=d;
-        next=NULL;
+int main()
+{   
+    for(int i = 0; i<s.length(); i++){
+                
     }
-};
-int main(){
-    node * head=NULL;
-    head=new node(1);
-    cout<<head->next;
-    
     return 0;
 }

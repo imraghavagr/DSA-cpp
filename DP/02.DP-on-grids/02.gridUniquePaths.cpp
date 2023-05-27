@@ -24,7 +24,29 @@ int solve(int a, int b){
     return dp[a-1][b-1];
 }
 //space optimized approach 
-
+int solve(int m, int n){
+    
+    vector<int> dp(n);
+    for(int i = 0; i<m; i++){
+        vector<int> temp(n);
+        for(int j = 0; j<n; j++){
+            if(i == 0 && j == 0){
+                temp[i] = 1;
+                continue;
+            }
+            int up = 0, left = 0;
+            if(i>0){
+                up = dp[j];
+            }
+            if(j>0){
+                left = temp[j-1];
+            }
+            temp[j] = up + left;
+        }
+        dp = temp;
+    }
+    return dp[n-1];
+}
 int main()
 {
     return 0;
