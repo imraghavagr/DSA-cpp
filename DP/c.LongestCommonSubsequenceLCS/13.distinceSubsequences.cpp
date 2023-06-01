@@ -59,6 +59,24 @@ int numDistinct(string s, string t) {
     }
     return (int)prev[t.length()];
 }
+
+//1D array space optimisation
+int numDistinct(string s, string t) {
+    vector<double> curr(t.length()+1, 0);
+    curr[0] = 1;
+    for(int i = 1; i<=s.length(); i++){
+        for(int j = t.length(); j>=1; j--){
+            if(s[i-1] == t[j-1]){
+                //two choices .. match it or do not match it 
+                curr[j] = curr[j-1] + curr[j];
+            }
+            else{
+                curr[j] = curr[j];
+            } 
+        }
+    }
+    return (int)curr[t.length()];
+}
 int main()
 {
     return 0;
