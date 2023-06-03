@@ -20,7 +20,6 @@ int lengthOfLIS(vector<int>& nums) {
     return ans;
 }
 
-
 int main()
 {
     return 0;
