@@ -45,7 +45,7 @@ vector<int> printLIS(vector<int>& nums) {
     vector<int> temp(maxi);
     //O(len of LIS)
     while(hash[lastIndex] != lastIndex){
-        lastIndex = has[lastIndex];
+        lastIndex = hash[lastIndex];
         temp.push_back(arr[lastIndex]);
     }
     reverse(temp.begin(), temp.end());
