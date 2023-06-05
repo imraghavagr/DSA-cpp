@@ -6,6 +6,9 @@ using namespace std;
 
 int t[101][101];
 
+//T - O(n*n*n) ..for every time (n^2), we run a somewhat n loop 
+//S - O(n*n) + O(n) - ass
+
 int solve(int arr[], int i, int j){
     if(i>=j){
         return 0;
