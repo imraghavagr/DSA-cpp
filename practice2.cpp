@@ -1,18 +1,24 @@
-#include<iostream>
-#include<vector>
-using namespace std;
-int main()
-{   
+#include<algorithm>
+vector<int> Solution::repeatedNumber(const vector<int> &A) {
+    long long int len = A.size();
 
-    vector<int> v = {1,2,3,4,5};
-    //               0 1 2 3 4
-    int n = v.size(); //5 
-    
-    for(int i = 1; i<n; i++){
-        if(v[i] < v[i-1]){
-            cout<<"false";
-            break;
-        }
+    long long int S = (len * (len+1) ) /2;
+    long long int P = (len * (len +1) *(2*len +1) )/6;
+    long long int missingNumber=0, repeating=0;
+     
+    for(int i=0;i<A.size(); i++){
+       S -= (long long int)A[i];
+       P -= (long long int)A[i]*(long long int)A[i];
     }
-    return 0;
+     
+    missingNumber = (S + P/S)/2;
+
+    repeating = missingNumber - S;
+
+    vector <int> ans;
+
+    ans.push_back(repeating);
+    ans.push_back(missingNumber);
+
+    return ans;
 }
