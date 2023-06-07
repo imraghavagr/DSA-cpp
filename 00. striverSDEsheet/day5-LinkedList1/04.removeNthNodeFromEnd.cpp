@@ -14,22 +14,30 @@ class ListNode{
 ListNode* removeNthFromEnd(ListNode* head, int n) {
     ListNode* slow = head;
     ListNode* fast = head;
-    int cnt = 0;
-    while(fast!=NULL && cnt<n){
+
+    int i = 0;
+    //take fast pointer n steps ahead 
+    while(i<n && fast != NULL){
         fast = fast->next;
-        cnt++;
+        i++;
     }
+
     if(fast == NULL){
-        //this means we need to delete the first node
+        //means we need to delete the first node 
         head = slow->next;
+        delete slow;
         return head;
     }
-    //now take both slow and fast pointer 1 step ahead
-    while(fast != NULL && fast->next != NULL){
-        fast = fast->next;
+
+    //now move both slow and fast pointers 1 step ahead
+    ListNode * prev;
+    while(fast != NULL){
+        prev = slow;
         slow = slow->next;
+        fast = fast->next;
     }
-    slow->next = slow->next->next; 
+    prev->next = slow->next;
+    delete slow;
     return head;
 }
 int main(){

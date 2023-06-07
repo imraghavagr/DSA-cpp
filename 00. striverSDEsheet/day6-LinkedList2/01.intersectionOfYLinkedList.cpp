@@ -80,7 +80,7 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
     }
     return NULL;
 }
-//approach 4
+//approach 4 - extension of difference in len method 
 ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
     ListNode* d1 = headA;
     ListNode* d2 = headB;
