@@ -1,6 +1,8 @@
+// Problem links.
+// Longest Subarray with sum K [positives]: https://bit.ly/3GHyBOS
+// Longest Subarray with sum K [positives + negatives]: http://bit.ly/3mNSZ9u
 #include<iostream>
 using namespace std;
-
 //brute force - O(n^2) time, O(1) space
 int maxLen(vector<int>&A, int n)
 {   
@@ -16,7 +18,6 @@ int maxLen(vector<int>&A, int n)
     }
     return longestLen;
 }
-
 //also works with negatives and zeros in the array 
 //Better solution using hashing - O(n) time, O(n) space : given we use unordered_map and there are no collisions 
 int getLongestSubarray(vector<int>& nums, int k){
@@ -40,6 +41,7 @@ int getLongestSubarray(vector<int>& nums, int k){
 
 //Only works for all positive elements 
 //sliding window or two pointer approach 
+//optimal 
 int longestSubarrayWithSumK(vector<int> a, long long k) {
     int i = 0, j = 0;
     long long sum = 0;

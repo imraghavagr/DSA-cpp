@@ -1,3 +1,6 @@
+// Problem links.
+// Longest Subarray with sum K [positives]: https://bit.ly/3GHyBOS
+// Longest Subarray with sum K [positives + negatives]: http://bit.ly/3mNSZ9u
 #include<iostream>
 using namespace std;
 
