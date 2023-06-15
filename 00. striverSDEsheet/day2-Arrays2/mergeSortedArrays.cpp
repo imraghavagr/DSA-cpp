@@ -77,7 +77,12 @@ void mergeAndSort2(vector<int> &a1, vector<int> &a2, int n, int m){
         }
     }
 }
-//gap method - O(n+m)
+//Optimal Method - O(m+n+mlogm+nlogn) -> O(mlogm + nlogn)
+/*
+keep one pointer at the end of arr1 and another at first element of arr2 
+
+*/
+//gap method - 
 void mergeOptimal(vector<int> a1, vector<int> a2){
 
 }

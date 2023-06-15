@@ -1,34 +1,57 @@
 //https://leetcode.com/problems/3sum/
 #include<iostream>
 using namespace std;
-void twoSum(vector<int> nums, int s, int target, vector<vector<int>> &ans){
-    int left = s; 
-    int right = nums.size()-1;
-    while(left<right){
-        if(nums[left] + nums[right] == target){
-            ans.push_back({nums[s-1], nums[left++], nums[right--]});
-            //for skipping duplicate triples 
-            while(left < right && nums[left] == nums[left-1]){
-                left++;
-            }
+
+//no sorting + hash set approach - O(n)
+void twoSum(vector<int> &nums, int s, int target, set<vector<int>> &tripletSet){
+    unordered_set<int> st;
+    vector<int> v;
+    for(int i = s; i<nums.size(); i++){
+        int r = target - nums[i];
+        if(st.find(r) != st.end()){
+            v = {nums[s-1], nums[i], r};
+            sort(v.begin(), v.end());
+            tripletSet.insert(v);
         }
-        else if(nums[left] + nums[right] > target)  right--;
-        else    left++;
+        st.insert(nums[i]);
     }
 }
 vector<vector<int>> threeSum(vector<int>& nums) {
-    vector<vector<int>> ans;
-    //no triplet can be formed if array size is less than 3 
-    if(nums.size()<3)    return ans;
+    vector<vector<int>> triplets;
+    set<vector<int>> tripletSet;    
+    for(int i = 0; i<nums.size()-2; i++){
+        int remTarget = 0 - nums[i];
+        //find if remTarget exists using twoSum function
+        twoSum(nums,i+1, remTarget, tripletSet);
+    }
+    for(auto it : tripletSet){
+        triplets.push_back(it);
+    }
+    return triplets;
+}
+//optimal 
+vector<vector<int>> threeSum(vector<int>& nums) {
+    vector<vector<int>> ans; 
     sort(nums.begin(), nums.end());
-    //if there is no negative element, sum 0 is not possible, so return null
-    if(nums[0] > 0) return ans;
-    int target = 0;
     for(int i = 0; i<nums.size()-2; i++){
         if(i>0 && nums[i] == nums[i-1]) continue;
-        int remainingTarget = -1*nums[i];
-        //now search for two elements that sum up to the remainingTarget in the array i+1 to last 
-        twoSum(nums, i+1, remainingTarget, ans);
+        int j = i+1, k = nums.size()-1;
+        while(j<k){
+            int sum = nums[i]+nums[j]+nums[k];
+            if(sum > 0){
+                k--;
+            }
+            else if(sum < 0){
+                j++;
+            }
+            else{
+                ans.push_back({nums[i], nums[j], nums[k]});
+                j++;
+                k--;
+                while(j<k && nums[j] == nums[j-1])    j++;
+                while(j<k && nums[k] == nums[k+1])  k--;
+            }
+        }
     }
     return ans;
 }

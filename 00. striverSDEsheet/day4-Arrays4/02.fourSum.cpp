@@ -38,6 +38,35 @@ vector<vector<int>> fourSum1(vector<int>& nums, int target) {
     return ans;
 }
 
+//Optimal
+vector<vector<int>> fourSum(vector<int>& nums, int target) {
+    if(nums.size()<4)   return {};
+    sort(nums.begin(), nums.end());
+    vector<vector<int>> ans;
+    for(int i = 0; i<nums.size()-3; i++){
+        if(i>0 && nums[i] == nums[i-1] )    continue;
+        for(int j = i+1; j<nums.size()-2; j++){
+            if(j != i+1 && nums[j] == nums[j-1])    continue;
+            int left = j+1;
+            int right = nums.size()-1;
+            long long sum = nums[i] + nums[j];
+            long long remTarget = target - (sum);
+            while(left < right){
+                long long cSum = nums[left] + nums[right];
+                if(cSum > remTarget)    right--;
+                else if(cSum < remTarget)   left++;
+                else{
+                    ans.push_back({nums[i],nums[j],nums[left],nums[right]});
+                    left++;
+                    right--;
+                    while(left < right && nums[left] == nums[left-1])   left++;
+                    while(left < right && nums[right] == nums[right+1]) right--;
+                }
+            }
+        }
+    }
+    return ans;
+}
 int main()
 {   
     vector<int> v = {2,2,2,2,2};

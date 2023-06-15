@@ -34,7 +34,27 @@ int longestConsecutive2(vector<int>& nums) {
     }
     return longest;
 }
-//Optimal method - O(n) time and O(1) space
+//O(3n) + O(n) space 
+int longestConsecutive(vector<int>& nums) {
+    unordered_set<int> st(nums.begin(), nums.end());
+    int cnt, ans = 0;
+    //search for the increasing sequence only from the starting element of a 
+    //possible sequence
+    for(auto it : st){
+        if(st.find(it-1) == st.end()){
+            //this means it can be a starting element 
+            //now we can keep on searching for it+1 
+            int x = it+1;
+            cnt = 1; 
+            while(st.find(x) != st.end()){
+                cnt++;
+                x = x + 1;
+            }
+            ans = max(cnt, ans);
+        }
+    }
+    return ans;
+}
 int main()
 {
     return 0;
