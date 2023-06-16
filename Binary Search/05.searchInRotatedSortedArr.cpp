@@ -43,6 +43,40 @@ int search(vector<int>& nums, int target) {
     if(idx != -1)   return idx;
     return search(nums, pivot, nums.size()-1, target);
 }
+
+//approach 2 - in one bs iteration itself 
+//O(log n)
+int search(vector<int>& nums, int target) {
+    
+    int s = 0, e = nums.size()-1;
+    while(s<=e){
+        int mid = s + (e-s)/2;
+        if(nums[mid] == target){
+            return mid;
+        }
+        else if(nums[mid] < nums[0]){
+            //right half is sorted 
+            //check if target lies in right half 
+            if(target >= nums[mid] && target <= nums[e]){
+                s = mid + 1;
+            }
+            else{
+                e = mid - 1;
+            }
+        }
+        else{
+            //left half is sorted 
+            //check if target lies in left half or not
+            if(target >= nums[s] && target <= nums[mid]){
+                e = mid - 1;
+            }
+            else{
+                s = mid + 1;
+            }
+        }
+    }
+    return -1; 
+}
 int main()
 {
     return 0;
