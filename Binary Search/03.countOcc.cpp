@@ -46,6 +46,15 @@ int count(int arr[], int n, int x) {
     else if(lastOcc == -1)  return 1; 
     else    return (lastOcc - firstOcc)+1;
 }
+//Approach 2 - using stl
+int count(int arr[], int n, int x) {
+    if(binary_search(arr, arr+n, x)){
+        int idx1 = lower_bound(arr, arr+n, x) - arr;
+        int idx2 = upper_bound(arr, arr+n, x) - arr;
+        return idx2-idx1;
+    }
+    else    return 0;
+}
 int main()
 {
     return 0;
