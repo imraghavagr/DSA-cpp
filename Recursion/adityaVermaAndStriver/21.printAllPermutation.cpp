@@ -25,7 +25,7 @@ void solve2(vector<int> nums, int index, vector<vector<int>> &ans){
     for(int i = index; i<nums.size(); i++){
         //swap value at index with all i 
         swap(nums[index], nums[i]);
-        solve(nums, index+1, ans);
+        solve2(nums, index+1, ans);
     }
 }
 int main()
