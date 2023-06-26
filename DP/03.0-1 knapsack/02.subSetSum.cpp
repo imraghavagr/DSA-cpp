@@ -1,4 +1,4 @@
-//https://practice.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1/
+iiiiii//https://practice.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1/
 //given an array, and a sum , return true if there exists a subset of the array whose sum is equal to given sum value.
 //given that array does not contains 0
 //T= O(sum*N)
