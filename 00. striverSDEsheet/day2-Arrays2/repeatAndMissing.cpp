@@ -26,6 +26,21 @@ vector<int> solve(vector<int> &nums){
     }
     return ans;
 }
+//Optimal Approach -> Maths based approach 
+vector<int> Solution::repeatedNumber(const vector<int> &arr) {
+        long long n = arr.size();
+        long long int S = (n*(n+1))/2;
+        long long int P = (n*(n + 1)*(2*n + 1))/6;
+        for(int i = 0; i<n; i++){
+            S -= (long long)arr[i];
+            P -= ((long long)arr[i]*(long long)arr[i]);
+        }
+        
+        long long missingNum = ((S + (P/S))/2);
+        long long remainingNum = missingNum - S;
+        return {remainingNum, missingNum};
+}
+
 int main()
 {   
     vector<int> nums = {3,1,2,5,4,6,7,5};

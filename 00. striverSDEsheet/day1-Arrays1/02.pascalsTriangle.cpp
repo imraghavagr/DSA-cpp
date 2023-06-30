@@ -18,6 +18,34 @@ vector<vector<int>> generate(int numRows) {
     }
     return ans;
 }
+//another approach- using nCr
+void generateCurrRow(int rowIdx, vector<int> &temp){
+    //total elements in this row will be rowIdx+1;
+    temp.push_back(1); //first element will always be 1 
+    
+    //and we will find the remaining rowIdx number of elements using 
+    //optimal ncr way 
+    int element = 1; 
+    int r = rowIdx;
+    for(int i = 1; i<=rowIdx; i++){
+        // numerator = numerator * r;
+        // denominator = denominator * i;
+        //instead of above two we can write following to avoid overflow
+        element = element * r; 
+        element = element / i;           
+        temp.push_back(element);
+        r--; 
+    }
+}
+vector<vector<int>> generate(int numRows) {
+    vector<vector<int>> ans;
+    for(int i = 0; i<numRows; i++){
+        vector<int> temp; 
+        generateCurrRow(i,temp);
+        ans.push_back(temp);
+    }
+    return ans; 
+}
 int main(){
     int n;
     cin>>n;
