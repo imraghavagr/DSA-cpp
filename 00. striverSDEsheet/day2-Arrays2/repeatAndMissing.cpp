@@ -40,6 +40,48 @@ vector<int> Solution::repeatedNumber(const vector<int> &arr) {
         long long remainingNum = missingNum - S;
         return {remainingNum, missingNum};
 }
+// bitmasking approach => O(n) time, O(1) space
+vector<int> Solution::repeatedNumber(const vector<int> &A) {
+    int xorResult = 0; 
+    int n = A.size();
+    for(int i = 1; i<=n; i++)   xorResult = xorResult ^ i;
+    for(int num : A)    xorResult = xorResult ^ num;
+    
+    //now we need to find the ith position from right in xorResult, where we have a set bit 
+    int temp = xorResult; 
+    int setBitIdx = 0; 
+    while(temp > 0){
+        if(temp & 1){
+            //we have set bit at the last 
+            break;
+        }
+        setBitIdx++; 
+        temp = (temp>>1);
+    }    
+    //now we will check what numbers have a set bit and index setBitIdx among all the numbers 
+    int mask = (1<<setBitIdx);
+    int x = 0; 
+    for(int i = 1; i<=n ;i++){
+        if((i&mask) != 0)  x = x ^ i; 
+    }
+    for(int num : A){
+        if((num&mask) != 0)   x = x ^ num; 
+    }
+    int y = xorResult ^ x; 
+    //now either of x or y will be repearing or missing 
+    int cnt = 0; 
+    for(int num : A){
+        if(num == x)    cnt++;
+    }
+    //if cnt = 2, x is our repeating number or else x will be the missing number 
+    if(cnt == 2){
+        //x is repeating, y is missing 
+        return {x,y};
+    }
+    else{
+        return {y,x};
+    }
+}
 
 int main()
 {   
