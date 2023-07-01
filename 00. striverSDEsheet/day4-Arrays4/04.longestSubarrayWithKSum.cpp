@@ -1,5 +1,5 @@
 // Problem links.
-// Longest Subarray with sum K [positives]: https://bit.ly/3GHyBOS
+// Longest Subarray with sum K [positives + 0]: https://bit.ly/3GHyBOS
 // Longest Subarray with sum K [positives + negatives]: http://bit.ly/3mNSZ9u
 #include<iostream>
 using namespace std;
@@ -38,7 +38,7 @@ int getLongestSubarray(vector<int>& nums, int k){
     }
     return maxLen;
 }
-
+// 1 2 3 4 5 
 //Only works for all positive elements 
 //sliding window or two pointer approach 
 //optimal 
