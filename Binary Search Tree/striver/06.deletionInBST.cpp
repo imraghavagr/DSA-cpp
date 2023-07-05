@@ -1,44 +1,55 @@
 #include<iostream>
 using namespace std;
-TreeNode* deleteAtNode(TreeNode* node){
-    if(node->left == NULL && node->right == NULL)   return NULL;
-    if(node->left == NULL){
-        return node->right;
+TreeNode* findRightMostNode(TreeNode* root){
+    TreeNode* curr = root; 
+    while(curr->right != NULL){
+        curr = curr->right;
     }
-    else if(node->right == NULL)    return node->left;
-
-    TreeNode* rightMostNode = findRightMostNode(node->left);
-
-    rightMostNode->right = node->right;
-    return node->left;
+    return curr; 
 }
-TreeNode* findRightMostNode(TreeNode* node){
-
-    if(node->right == NULL) return node;
-
-    return findRightMostNode(node->right);
-
+TreeNode* deleteAtRoot(TreeNode* root){
+    if(root->left == NULL && root->right == NULL)   return NULL; 
+    TreeNode* nodeLeft = root->left; 
+    TreeNode* nodeRight = root->right; 
+    if(root->left == NULL){
+        delete root;
+        return nodeRight;
+    }
+    else if(root->right == NULL){
+        delete root; 
+        return nodeLeft;
+    }
+    else{
+        //we have both left and right children for the root 
+        TreeNode* rightMostNode = findRightMostNode(root->left);
+        rightMostNode->right = root->right;
+        delete root; 
+        return nodeLeft;
+    }        
 }
 TreeNode* searchAndDelete(TreeNode* originalRoot, TreeNode* root, int key){
     if(root == NULL)    return originalRoot;
-    if(root->left != NULL && root->left->val == key){
-        root->left = deleteAtNode(root->left);
+    if(root->right != NULL && root->right->val == key){
+        root->right = deleteAtRoot(root->right);
         return originalRoot;
     }
-    else if(root->right != NULL && root->right->val == key){
-        root->right = deleteAtNode(root->right);
+    else if(root->left != NULL && root->left->val == key){
+        root->left = deleteAtRoot(root->left);
         return originalRoot;
     }
-    else if(key > root->val)    return searchAndDelete(originalRoot, root->right, key);
-    else   return searchAndDelete(originalRoot, root->left, key);
-
+    else if(root->val > key){
+        return searchAndDelete(originalRoot, root->left, key);
+    }
+    else{
+        return searchAndDelete(originalRoot, root->right, key);
+    }
 }
 TreeNode* deleteNode(TreeNode* root, int key) {
-    if(root == NULL) return root;
+    if(root == NULL)    return NULL;
     if(root->val == key){
-        return deleteAtNode(root);
+        return deleteAtRoot(root);
     }
-    return searchAndDelete(root, root, key);
+    return searchAndDelete(root,root,key);
 }
 int main()
 {

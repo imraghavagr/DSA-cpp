@@ -21,6 +21,27 @@ int floor(Node* root, int x) {
     solve(root, x, floor);
     return floor;
 }
+//iterative soln
+int floor(Node* root, int x) {
+    if(root == NULL)    return -1; 
+    int ans = -1; 
+    Node* curr = root; 
+    while(curr != NULL){
+        if(curr->data == x){
+            return x;
+        }
+        else if(curr->data < x){
+            //this can be a possible ans 
+            ans = curr->data; 
+            //search for larger ans 
+            curr = curr->right;
+        }
+        else{
+            curr = curr->left; 
+        }
+    }
+    return ans; 
+}
 int main()
 {
     return 0;
