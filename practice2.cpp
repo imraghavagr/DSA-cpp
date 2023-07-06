@@ -1,9 +1,10 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
 using namespace std;
 int main()
 {   
-    vector<int> v = {1,2,3,4,5};
-    int idx = upper_bound(v.begin(), v.end(), 4) - v.begin();
-    cout<<idx<<endl;
+    vector<int> arr(10);
+    for(int i = 0; i<10; i++)    cout<<arr[i]<<" ";
+    cout<<endl;
     return 0;
 }
