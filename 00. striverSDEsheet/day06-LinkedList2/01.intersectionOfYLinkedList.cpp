@@ -41,44 +41,43 @@ ListNode *getIntersectionNode2(ListNode *headA, ListNode *headB) {
     return NULL;
 }
 //Approach 3 - using difference in len method
-ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-    //find len of ll A and ll B
-    int lenA = 0, lenB = 0;
-    while(headA != NULL || headB  != NULL){
+pair<int,int> findLength(ListNode* headA, ListNode* headB){
+    int l1 = 0, l2 = 0; 
+    while(headA != NULL || headB != NULL){
         if(headA != NULL){
-            lenA++;
-            headA = headA->next;
+            l1++; 
+            headA = headA->next; 
         }
         if(headB != NULL){
-            lenB++;
-            headB = headB->next;
+            l2++; 
+            headB = headB->next; 
         }
     }
-    
-    int d = abs(lenA-lenB);
-    ListNode* ptr1;
-    ListNode* ptr2;
-    if(lenA>lenB){
-        ptr1 = headA;
-        ptr2 = headB;
+    return {l1,l2};
+}
+void goAhead(ListNode* &head, int len){
+    for(int i = 0; i<len; i++)  head = head -> next; 
+}
+ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+    pair<int,int> len = findLength(headA, headB);
+    int lenDiff = abs(len.first - len.second);
+    if(len.first > len.second){
+        //take headA lenDiff steps ahead 
+        goAhead(headA, lenDiff);
     }
-    else{
-        ptr1 = headB;
-        ptr2 = headA;
+    else if(len.second > len.first){
+        //take headB lenDiff steps ahead 
+        goAhead(headB, lenDiff);
     }
-    //now take the ptr1 d steps ahead
-    for(int i = 0; i<d; i++){
-        ptr1 = ptr1->next;
-    }
-    //now take both ptr1 and ptr2 ahead, one step at a time
-    while(ptr1 != NULL  && ptr2 != NULL){
-        if(ptr1 == ptr2){
-            return ptr1;
+    //now take both ptrs 1 step ahead 
+    while(headA != NULL){
+        if(headA == headB){
+            return headA; 
         }
-        ptr1 = ptr1->next;
-        ptr2 = ptr2->next;
+        headA = headA->next; 
+        headB = headB->next; 
     }
-    return NULL;
+    return NULL; 
 }
 //approach 4 - extension of difference in len method 
 ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
