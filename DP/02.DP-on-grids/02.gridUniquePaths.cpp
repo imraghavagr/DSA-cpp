@@ -24,28 +24,16 @@ int solve(int a, int b){
     return dp[a-1][b-1];
 }
 //space optimized approach 
-int solve(int m, int n){
-    
-    vector<int> dp(n);
-    for(int i = 0; i<m; i++){
-        vector<int> temp(n);
-        for(int j = 0; j<n; j++){
-            if(i == 0 && j == 0){
-                temp[i] = 1;
-                continue;
-            }
-            int up = 0, left = 0;
-            if(i>0){
-                up = dp[j];
-            }
-            if(j>0){
-                left = temp[j-1];
-            }
-            temp[j] = up + left;
+int uniquePaths(int m, int n) {
+    vector<int> prev(n, 1), curr(n, 0);
+    for(int i = 1; i<m; i++){
+        curr[0] = 1; 
+        for(int j = 1; j<n; j++){
+            curr[j] = curr[j-1] + prev[j];
         }
-        dp = temp;
+        prev = curr; 
     }
-    return dp[n-1];
+    return prev[n-1];
 }
 int main()
 {

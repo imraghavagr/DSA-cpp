@@ -1,5 +1,5 @@
 // 0 is also present in the array .. 
-//so if nums = {0,1,0} and sum = 0
+//so if nums = {0,1,0} and sum = 1
 //possible answers are - (0,1), (1,0), (1), (0,1,0)... i.e. total 4 required subsets are present 
 
 //there will be the slight change in the base case 
