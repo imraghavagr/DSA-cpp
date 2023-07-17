@@ -29,6 +29,75 @@ bool isMatch(string s, string p) {
     vector<vector<int>> dp(n+1, vector<int>(m+1, -1));
     return solve(n,m,p,s, dp);
 }   
+
+//tabular approach 
+bool isMatch(string s, string p) {
+    if(s == p)  return true;
+    int m = s.length(), n = p.length();
+    vector<vector<bool>> dp(m+1, vector<bool>(n+1, false));
+    dp[0][0] = true;
+    for(int j = 1; j<=n; j++){
+        bool ret = true; 
+        for(int k = 0; k<j; k++){
+            if(p[k] != '*'){
+                ret = false;
+                break;
+            }
+        }
+        dp[0][j] = ret;
+    }
+    for(int i = 1; i<=m; i++)   dp[i][0] = false;
+
+    for(int i = 1; i<=m; i++){
+        for(int j = 1; j<=n; j++){
+            if(s[i-1] == p[j-1] || p[j-1] == '?'){
+                dp[i][j] = dp[i-1][j-1];
+            }
+            else if(p[j-1] == '*'){
+                dp[i][j] = dp[i][j-1] || dp[i-1][j];
+            }
+            else{
+                dp[i][j] = false;
+            }
+        }
+    }
+    return dp[m][n];
+}
+
+//space optimization
+bool isMatch(string s, string p) {
+    if(s == p)  return true;
+    int m = s.length(), n = p.length();
+    vector<bool> prev(n+1, false), curr(n+1, false);
+    prev[0] = true;
+    for(int j = 1; j<=n; j++){
+        bool ret = true; 
+        for(int k = 0; k<j; k++){
+            if(p[k] != '*'){
+                ret = false;
+                break;
+            }
+        }
+        prev[j] = ret;
+    }
+    curr[0] = false;
+
+    for(int i = 1; i<=m; i++){
+        for(int j = 1; j<=n; j++){
+            if(s[i-1] == p[j-1] || p[j-1] == '?'){
+                curr[j] = prev[j-1];
+            }
+            else if(p[j-1] == '*'){
+                curr[j] = curr[j-1] || prev[j];
+            }
+            else{
+                curr[j] = false;
+            }
+        }
+        prev = curr;
+    }
+    return prev[n];
+}
 int main()
 {
     return 0;
