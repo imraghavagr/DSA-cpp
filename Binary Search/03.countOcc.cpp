@@ -1,59 +1,25 @@
 #include<iostream>
 using namespace std;
-int firstOccurence(int *arr, int n, int x){
-    int ans = -1; 
-    int s = 0, e = n-1; 
-    while(s<=e){
-        int mid = s + (e-s)/2;
-        if(arr[mid] == x){
-            ans = mid;
-            e = mid-1;
-        }
-        else if(x < arr[mid]){
-            e = mid-1;
-        }
-        else{
-            s = mid+1;
-        }
-    }
-    return ans;
+int findOcc(int target, vector<int> &nums, int flag){
+	int ans = -1; 
+	int s = 0, e = nums.size()-1;
+	while(s<=e){
+		int mid = s + (e-s)/2; 
+		if(nums[mid] == target){
+			ans = mid;
+			if(flag)   s = mid + 1;
+			else    e = mid - 1;
+		}
+		else if(target > nums[mid]) s = mid + 1;
+		else    e = mid - 1;
+	}
+	return ans; 
 }
-int lastOccurence(int *arr, int n, int x){
-    int ans = -1; 
-    int s = 0, e = n-1; 
-    while(s<=e){
-        int mid = s + (e-s)/2;
-        if(arr[mid] == x){
-            ans = mid;
-            s = mid+1;
-        }
-        else if(x < arr[mid]){
-            e = mid-1;
-        }
-        else{
-            s = mid+1;
-        }
-    }
-    return ans;
-}
-int count(int arr[], int n, int x) {
-    int firstOcc = firstOccurence(arr, n, x);
-    int lastOcc = lastOccurence(arr, n, x);
-    if(firstOcc == -1 && lastOcc == -1){
-        return 0;
-    }
-    else if(firstOcc == -1) return 1; 
-    else if(lastOcc == -1)  return 1; 
-    else    return (lastOcc - firstOcc)+1;
-}
-//Approach 2 - using stl
-int count(int arr[], int n, int x) {
-    if(binary_search(arr, arr+n, x)){
-        int idx1 = lower_bound(arr, arr+n, x) - arr;
-        int idx2 = upper_bound(arr, arr+n, x) - arr;
-        return idx2-idx1;
-    }
-    else    return 0;
+int count(vector<int>& nums, int n, int target) {
+	int fo = findOcc(target, nums,0);
+	if(fo == -1)    return 0;
+	int lo = findOcc(target, nums, 1);
+	return lo-fo+1;
 }
 int main()
 {
