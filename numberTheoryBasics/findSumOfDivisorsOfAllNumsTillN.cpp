@@ -89,6 +89,8 @@ long long sumOfDivisors(int N)
 }
 
 //Optimal Approach -> O(N) time, O(1) space
+//every num i = [1,N] will appear N/i times in the answer 
+
 int main()
 {
     return 0;

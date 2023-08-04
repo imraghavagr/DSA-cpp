@@ -1,22 +1,30 @@
 #include<iostream>
 #include<vector>
-#include<algorithm>
 using namespace std;
-bool cmpr(vector<int> &a, vector<int> &b){
-    return a[1] < b[1];
-}
-int main()
-{   
-    // // vector<pair<int,int>> v = {{1,2},{8,3},{5,6}};
-    // vector<int> v = {1,2,3,4,5};
-    // // sort(v.begin(), v.end(), compare);
-    // sort(v.rbegin(), v.rend());
-    vector<vector<int>> v = {{5,2,3},{20,3,4},{15,4,5}};
-    sort(v.begin(), v.end(), cmpr);
-    for(auto x : v){
-        for(auto val : x)   cout<<val<<",";
-        cout<<" ";
+
+class Raghav{
+  private:
+    string name, college, degree, strength;
+    vector<string> languages_spoken;
+  public:
+    Raghav(){
+      name = "Raghav";
+      college = "Vellore Institute of Technology";
+      degree = "CSE with spec. in AI and ML";
+      strength = "Strong hold in DS and Algo";
+      languages_spoken = {"English", "Hindi"};
     }
-    cout<<endl;
-    return 0;
+    void current_status(){
+      cout<<"I am a final year student at "<<college<<" persuing "<<degree<<endl;
+    };
+    void say_bye(){
+      cout<<"Thanks for dropping by, how you find some of my work interesting."<<endl;
+    }
+};
+
+int main(){
+  Raghav obj;
+  obj.current_status();
+  obj.say_bye();
+  return 0;
 }
