@@ -1,5 +1,21 @@
 #include<iostream>
 using namespace std;
+//Recursion approach
+ListNode* first;
+bool solve(ListNode* head){
+    if(head == NULL)    return true;
+
+    if(!solve(head->next))  return false; 
+    if(first->val != head->val) return false; 
+    first = first->next; 
+    return true;
+}
+bool isPalindrome(ListNode* head) {
+    first = head; 
+    return solve(head);
+}
+
+//Approach 2 -> Modifying the sencond half ll
 bool isPalindrome(ListNode* head) {
     if(head->next == NULL)    return true;;
     //first lets find the mid point of the ll 
