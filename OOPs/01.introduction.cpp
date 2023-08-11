@@ -3,10 +3,7 @@ Object Oriented Programming refers to the programming that uses the concept of c
 that helps us implement real-world entities such as polymorphism, inheritance, 
 encapsulation, abstraction, etc. 
 Some popular OOP languages are c++, java, python, php, c# etc 
-
-
 */
-
 #include<iostream>
 #include<string>
 using namespace std;

@@ -1,24 +1,27 @@
-1	1	1	1	0	0	0	
-0	0	0	1	0	0	0	
-0	0	0	1	0	0	1	
-1	0	0	1	0	0	0	
-0	0	0	1	0	0	0	
-0	0	0	1	0	0	0	
-0	0	0	1	1	1	1	
+#include<bits/stdc++.h>
+using namespace std;
 
-0	0	0	0	0	0	0	
-0	0	0	0	0	0	0	
-0	0	0	0	0	0	1	
-1	0	0	0	0	0	0	
-0	0	0	0	0	0	0	
-0	0	0	0	0	0	0	
-0	0	0	0	0	0	0	
-
-1	2	3	4	4	4	4	
-1	2	3	5	5	5	5	
-1	2	3	6	6	6	7	
-2	2	3	7	7	7	7	
-2	2	3	8	8	8	8	
-2	2	3	9	9	9	9	
-2	2	3	10	11	12	13	
-13 1
+int main()
+{   
+    string A = "my name is Raghav";
+    string ans; 
+    int i = A.size()-1; 
+    while(i >= 0){
+        //form word by word 
+        //skip all white spaces 
+        while(i>=0 && A[i] == ' ')  i--; 
+        
+        string temp; 
+        while(i>=0 && A[i] != ' '){
+            temp.push_back(A[i]);
+            i--;
+        }
+        reverse(temp.begin(), temp.end());
+        ans += temp;
+        ans.push_back(' ');
+        i--;
+    }
+    ans.pop_back();
+    cout<<ans<<endl;
+    return 0;
+}
