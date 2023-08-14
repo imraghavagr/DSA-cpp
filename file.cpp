@@ -1,27 +1,19 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<string>
 using namespace std;
-
 int main()
 {   
-    string A = "my name is Raghav";
-    string ans; 
-    int i = A.size()-1; 
-    while(i >= 0){
-        //form word by word 
-        //skip all white spaces 
-        while(i>=0 && A[i] == ' ')  i--; 
-        
-        string temp; 
-        while(i>=0 && A[i] != ' '){
-            temp.push_back(A[i]);
-            i--;
-        }
-        reverse(temp.begin(), temp.end());
-        ans += temp;
-        ans.push_back(' ');
-        i--;
-    }
-    ans.pop_back();
-    cout<<ans<<endl;
+    string s1 = "my name is raghav agarwa kdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddl";
+    string s2 = "ab";
+    string s3 = "pqr";
+    string s4 = "abcd";
+    char ch = 'a';
+    int x = 4; 
+    cout<<sizeof(ch)<<endl;
+    cout<<sizeof(s1)<<endl;
+    cout<<sizeof(s2)<<endl;
+    cout<<sizeof(s3)<<endl;
+    cout<<sizeof(s4)<<endl;
+    cout<<sizeof(x)<<endl;
     return 0;
 }

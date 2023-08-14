@@ -46,6 +46,9 @@ int main()
     (*h2).level = 20;
     (*h2).setHealth(100);
 
+
+    
+
     cout<<"Level of H2 "<<(*h2).level<<endl;
     cout<<"Health of H2 "<<(*h2).getHealth()<<endl;
     //there is one more way to do it - we can use the '->' operator which gives the value at any address 
