@@ -1,3 +1,6 @@
+//https://www.hackerearth.com/problem/algorithm/benny-and-the-broken-odometer/?purpose=login&source=problem-page&update=google
+
+//we need to find the number of numbers in range [1,n] whose any digit is a 3
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long
