@@ -25,7 +25,7 @@ void prime_sieve(int *p){
 				p[j] = 0; //non prime
 			}
 		}
-
+/SignOutOptions
 	}
 	//special cases
 	p[0] = 0;
