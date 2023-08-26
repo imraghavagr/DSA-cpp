@@ -32,3 +32,7 @@
 📍 Merging Interval DP: https://bit.ly/451VhDS
 📍 Multi Dimension DP: https://bit.ly/44TIOSB
 📍 Digit DP: https://bit.ly/3IahllN
+
+Digit Dp q links 
+https://www.spoj.com/problems/CPCRC1C/
+https://www.spoj.com/problems/PR003004/
