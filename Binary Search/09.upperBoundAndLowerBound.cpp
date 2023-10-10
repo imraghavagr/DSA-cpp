@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 /*
-lower_bound -> smallest value greater than or euqal to target
+lower_bound -> smallest value greater than or equal to target
 upper_bound -> smallest value greater than the target 
 floor -> greatest value smaller than or equal to target
 ceil  -> smallest value greater than or euqal to target
